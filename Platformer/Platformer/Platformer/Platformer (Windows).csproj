@@ -70,16 +70,19 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Accelerometer.cs" />
+    <Compile Include="Alcohol.cs" />
     <Compile Include="Animation.cs" />
     <Compile Include="AnimationPlayer.cs" />
     <Compile Include="Bottle.cs" />
     <Compile Include="Candy.cs" />
     <Compile Include="Circle.cs" />
     <Compile Include="Coffee.cs" />
+    <Compile Include="Door.cs" />
     <Compile Include="Enemy.cs" />
     <Compile Include="Gem.cs" />
     <Compile Include="Layer.cs" />
     <Compile Include="Level.cs" />
+    <Compile Include="Obstacle.cs" />
     <Compile Include="PlatformerGame.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Powerup.cs" />

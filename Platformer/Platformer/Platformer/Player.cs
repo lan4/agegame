@@ -71,9 +71,10 @@ namespace Platformer
  
         // Constants for controling horizontal movement
         private float MoveAcceleration = 13000.0f;
-        private float MaxMoveSpeed = 50.0f;
+        private float MaxMoveSpeed = 1000.0f;
         private float GroundDragFactor = 0.48f;
         private float AirDragFactor = 0.58f;
+        private float MovementSpeed = 0.5f;
 
         // Constants for controlling vertical movement
        
@@ -81,7 +82,7 @@ namespace Platformer
         private float JumpLaunchVelocity = -3500.0f;
         private float GravityAcceleration = 3400.0f;
         private float MaxFallSpeed = 550.0f;
-        private float JumpControlPower = 0.0f; 
+        private float JumpControlPower = 0.0f;
 
 
         // Input configuration
@@ -161,31 +162,32 @@ namespace Platformer
             switch (ageState)
             {
                 case(1)://Set movement constants for Adult
-                    MediaPlayer.Volume = 0.8f;
+                    MediaPlayer.Volume = 0.0f;
                     MoveAcceleration = 13000.0f;
-                    MaxMoveSpeed = 100.0f;
+                    MaxMoveSpeed = 1000.0f;
                     GroundDragFactor = 0.48f;
                     AirDragFactor = 0.58f; 
                     MaxJumpTime = 0.35f;
                     JumpLaunchVelocity = -3500.0f;
                     GravityAcceleration = 3400.0f;
                     MaxFallSpeed = 550.0f;
-                    JumpControlPower = 0.14f; 
-                     break;
+                    JumpControlPower = 0.14f;
+                    MovementSpeed = 1.0f;
+                    break;
                 case(2)://Set movement constants for old man
                     MediaPlayer.Volume = 0.0f;
                     MoveAcceleration = 13000.0f;
-                    MaxMoveSpeed = 50.0f;
+                    MaxMoveSpeed = 1000.0f;
                     GroundDragFactor = 0.48f;
                     AirDragFactor = 0.58f;    
                     MaxJumpTime = 0.2f;
                     JumpLaunchVelocity = -2000.0f;
                     GravityAcceleration = 3400.0f;
                     MaxFallSpeed = 550.0f;
-                    JumpControlPower = 0.14f; 
+                    JumpControlPower = 0.14f;
+                    MovementSpeed = 0.5f;
                     break;
 
-                break;
             }
         }
 
@@ -329,13 +331,13 @@ namespace Platformer
                 keyboardState.IsKeyDown(Keys.Left) ||
                 keyboardState.IsKeyDown(Keys.A))
             {
-                movement = -1.0f * moveScalar;
+                movement = -MovementSpeed * moveScalar;
             }
             else if (gamePadState.IsButtonDown(Buttons.DPadRight) ||
                      keyboardState.IsKeyDown(Keys.Right) ||
                      keyboardState.IsKeyDown(Keys.D))
             {
-                movement = 1.0f * moveScalar;
+                movement = MovementSpeed * moveScalar;
             }
 
             // Check if the player wants to jump.
