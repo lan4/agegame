@@ -210,6 +210,11 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
+    <Compile Include="Effect\desaturate.fx">
+      <Name>desaturate</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+    </Compile>
     <None Include="Levels\0.txt">
       <Name>0</Name>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -324,9 +329,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Sounds\BackgroundMusic.wav">
+    <Compile Include="Sounds\BackgroundMusic.WMA">
       <Name>BackgroundMusic</Name>
-      <Importer>WavImporter</Importer>
+      <Importer>WmaImporter</Importer>
       <Processor>SongProcessor</Processor>
     </Compile>
   </ItemGroup>

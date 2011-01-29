@@ -52,7 +52,10 @@ namespace Platformer
         // Level game state.
         private Random random = new Random(354668); // Arbitrary, but constant seed
         private float cameraPosition;
-        public float cameraPositionYAxis; 
+        public float cameraPositionYAxis;
+
+        //Desaturation Effect
+        private Effect desaturateEffect;
 
         public int Score
         {
@@ -96,8 +99,13 @@ namespace Platformer
         /// </param>
         public Level(IServiceProvider serviceProvider, Stream fileStream, int levelIndex)
         {
+            
+
             // Create a new content manager to load content used just by this level.
             content = new ContentManager(serviceProvider, "Content");
+
+            //Load Effect
+            desaturateEffect = content.Load<Effect>("Effect/desaturate");
 
             timeRemaining = TimeSpan.FromMinutes(2.0);
 
@@ -568,9 +576,11 @@ namespace Platformer
         /// </summary>
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            spriteBatch.Begin();
+            float percentage=(float)(gameTime.TotalGameTime.TotalSeconds/TimeSpan.FromMinutes(5.00).TotalSeconds);
+            //spriteBatch.Begin();
+            spriteBatch.Begin(0, null, null, null, null, desaturateEffect);
             for (int i = 0; i <= EntityLayer; ++i)
-                layers[i].Draw(spriteBatch, cameraPosition);
+                layers[i].Draw(spriteBatch, cameraPosition, percentage);
             spriteBatch.End();
 
             ScrollCamera(spriteBatch.GraphicsDevice.Viewport);
@@ -592,7 +602,7 @@ namespace Platformer
 
             spriteBatch.Begin();
             for (int i = EntityLayer + 1; i < layers.Length; ++i)
-                layers[i].Draw(spriteBatch, cameraPosition);
+                layers[i].Draw(spriteBatch, cameraPosition,percentage);
             spriteBatch.End();
         }
 
@@ -664,5 +674,7 @@ const float ViewMargin = 0.35f;
         }
 
         #endregion
+
+
     }
 }
