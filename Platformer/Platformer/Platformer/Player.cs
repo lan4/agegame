@@ -62,24 +62,27 @@ namespace Platformer
             get { return velocity; }
             set { velocity = value; }
         }
+
         Vector2 velocity;
 
         // Constants for controling horizontal movement
-        private const float MoveAcceleration = 13000.0f;
-        private const float MaxMoveSpeed = 1750.0f;
+        private const float MoveAcceleration = 10000.0f;
+        private const float MaxMoveSpeed = 10000.0f;
         private const float GroundDragFactor = 0.48f;
         private const float AirDragFactor = 0.58f;
 
         // Constants for controlling vertical movement
+       
         private const float MaxJumpTime = 0.35f;
         private const float JumpLaunchVelocity = -3500.0f;
         private const float GravityAcceleration = 3400.0f;
         private const float MaxFallSpeed = 550.0f;
         private const float JumpControlPower = 0.14f; 
+        
 
         // Input configuration
         private const float MoveStickScale = 1.0f;
-        private const float AccelerometerScale = 1.5f;
+        private const float AccelerometerScale = 1.0f;
         private const Buttons JumpButton = Buttons.A;
 
         /// <summary>
@@ -95,6 +98,12 @@ namespace Platformer
         /// Current user movement input.
         /// </summary>
         private float movement;
+
+        public float Movement
+        {
+            get { return movement; }
+            set { movement = value; }
+        }
 
         // Jumping state
         private bool isJumping;
