@@ -13,14 +13,13 @@ namespace Platformer
     {
 
         private bool collected;
-        private GameTime powerTime;
-        private TimeSpan startTime;
-        private int timeDifference;
+        private TimeSpan powerupTimer;
 
         public Candy(Level level, Vector2 position)
             : base(level, position)
         {
             this.collected = false;
+            powerupTimer = new TimeSpan();
         }
 
         public override void LoadContent()
@@ -32,20 +31,17 @@ namespace Platformer
 
         public override void OnCollected(Player collectedBy)
         {
-            collectedBy.MoveScalar = 1.3f;
             collected = true;
-            startTime = powerTime.TotalGameTime;
+            collectedBy.MoveScalar = 2.0f;
         }
 
-        public override void PowerupTimer(Player collectedBy)
+        public override void PowerupTimer(Player collectedBy, GameTime gameTime)
         {
             //Times the candy movement speed boost.
-            if (collected)
+            Update(gameTime);
+            if (collected  == true)
             {
-                TimeSpan endTime;
-                endTime = powerTime.TotalGameTime;
-                timeDifference = Math.Abs(endTime.Seconds - startTime.Seconds);
-                if (timeDifference >= 5)
+                if (powerupTimer.Seconds >= 5)
                 {
                     collected = false;
                     collectedBy.MoveScalar = 1.0f;
@@ -53,18 +49,17 @@ namespace Platformer
             }
         }
 
-        //public void Update(GameTime gameTime)
-        //{
-        //    //// Bounce control constants
-        //    //const float BounceHeight = 0.18f;
-        //    //const float BounceRate = 3.0f;
-        //    //const float BounceSync = -0.75f;
-
-        //    //// Bounce along a sine curve over time.
-        //    //// Include the X coordinate so that neighboring gems bounce in a nice wave pattern.            
-        //    //double t = gameTime.TotalGameTime.TotalSeconds * BounceRate + Position.X * BounceSync;
-        //    //bounce = (float)Math.Sin(t) * BounceHeight * texture.Height;
-        //}
+        public override void Update(GameTime gameTime)
+        {
+            if (collected == true)
+            {
+                powerupTimer += gameTime.ElapsedGameTime;
+            }
+            else
+            {
+                collected = false;
+            }
+        }
 
     }
 }

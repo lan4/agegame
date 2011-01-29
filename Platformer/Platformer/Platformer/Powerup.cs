@@ -119,18 +119,18 @@ namespace Platformer
         /// <summary>
         /// Bounces up and down in the air to entice players to collect them.
         /// </summary>
-        public void Update(GameTime gameTime)
-        {
-            // Bounce control constants
-            const float BounceHeight = 0.18f;
-            const float BounceRate = 3.0f;
-            const float BounceSync = -0.75f;
+        public abstract void Update(GameTime gameTime);
+        //{
+        //    // Bounce control constants
+        //    const float BounceHeight = 0.18f;
+        //    const float BounceRate = 3.0f;
+        //    const float BounceSync = -0.75f;
 
-            // Bounce along a sine curve over time.
-            // Include the X coordinate so that neighboring gems bounce in a nice wave pattern.            
-            double t = gameTime.TotalGameTime.TotalSeconds * BounceRate + Position.X * BounceSync;
-            bounce = (float)Math.Sin(t) * BounceHeight * texture.Height;
-        }
+        //    // Bounce along a sine curve over time.
+        //    // Include the X coordinate so that neighboring gems bounce in a nice wave pattern.            
+        //    double t = gameTime.TotalGameTime.TotalSeconds * BounceRate + Position.X * BounceSync;
+        //    bounce = (float)Math.Sin(t) * BounceHeight * texture.Height;
+        //}
 
         /// <summary>
         /// Draws a gem in the appropriate color.
@@ -148,7 +148,7 @@ namespace Platformer
         /// The player who collected this powerup.
         /// </param>
 
-        public abstract void PowerupTimer(Player collectedBy);
+        public abstract void PowerupTimer(Player collectedBy, GameTime gameTime);
         public abstract void OnCollected(Player collectedBy);
 
     }

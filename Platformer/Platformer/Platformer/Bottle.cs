@@ -10,6 +10,9 @@ namespace Platformer
     /// </summary>
     class Bottle : Powerup
     {
+        private bool collected;
+        private TimeSpan powerupTimer;
+
         public Bottle(Level level, Vector2 position)
             : base(level, position)
         {
@@ -28,19 +31,25 @@ namespace Platformer
 
         }
 
-        public override void PowerupTimer(Player collectedBy)
+        public override void PowerupTimer(Player collectedBy, GameTime gameTime)
         {
             //Times the candy movement speed boost.
+            Update(gameTime);
+            if (collected)
+            {
+                if (powerupTimer.Seconds >= 5)
+                {
+                    collected = false;
+                    collectedBy.MoveScalar = 1.0f;
+                }
+            }
+        }
+
+        public override void Update(GameTime gameTime)
+        {
             //if (collected)
             //{
-            //    TimeSpan endTime;
-            //    endTime = powerTime.TotalGameTime;
-            //    timeDifference = Math.Abs(endTime.Seconds - startTime.Seconds);
-            //    if (timeDifference >= 5)
-            //    {
-            //        collected = false;
-            //        collectedBy.MoveScalar = 1.0f;
-            //    }
+            //    startTime -= gameTime.ElapsedGameTime;
             //}
         }
 
