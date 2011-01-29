@@ -196,6 +196,10 @@ namespace Platformer
                 // Candy
                 case 'P':
                     return LoadCandyTile(x, y);
+                
+                // Coffee
+                case 'C':
+                    return LoadCoffeeTile(x, y);
 
                 // Floating platform
                 case '-':
@@ -204,12 +208,6 @@ namespace Platformer
                 // Various enemies
                 case 'A':
                     return LoadEnemyTile(x, y, "MonsterA");
-                case 'B':
-                    return LoadEnemyTile(x, y, "MonsterB");
-                case 'C':
-                    return LoadEnemyTile(x, y, "MonsterC");
-                case 'D':
-                    return LoadEnemyTile(x, y, "MonsterD");
 
                 // Platform block
                 case '~':
@@ -320,6 +318,14 @@ namespace Platformer
         {
             Point position = GetBounds(x, y).Center;
             powerups.Add(new Candy(this, new Vector2(position.X, position.Y)));
+
+            return new Tile(null, TileCollision.Passable);
+        }
+
+        private Tile LoadCoffeeTile(int x, int y)
+        {
+            Point position = GetBounds(x, y).Center;
+            powerups.Add(new Coffee(this, new Vector2(position.X, position.Y)));
 
             return new Tile(null, TileCollision.Passable);
         }
