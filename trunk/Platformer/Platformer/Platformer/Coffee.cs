@@ -9,13 +9,13 @@ namespace Platformer
     /// <summary>
     /// This is a game component that implements IUpdateable.
     /// </summary>
-    class Candy : Powerup
+    class Coffee : Powerup
     {
 
         private bool collected;
         private TimeSpan powerupTimer;
 
-        public Candy(Level level, Vector2 position)
+        public Coffee(Level level, Vector2 position)
             : base(level, position)
         {
             this.collected = false;
@@ -34,11 +34,11 @@ namespace Platformer
             collected = true;
             if (collectedBy.ageState == 0 || collectedBy.ageState == 1)
             {
-                collectedBy.MoveScalar = 2.0f;
+                collectedBy.MoveScalar = 5.0f;
             }
             else if (collectedBy.ageState == 2 || collectedBy.ageState == 3)
             {
-                collectedBy.MoveScalar = 0.5f;
+                collectedBy.MoveScalar = 2.0f;
             }
         }
 
@@ -46,7 +46,7 @@ namespace Platformer
         {
             //Times the candy movement speed boost.
             Update(gameTime);
-            if (collected  == true)
+            if (collected == true)
             {
                 if (powerupTimer.Seconds >= 5)
                 {
