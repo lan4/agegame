@@ -98,6 +98,13 @@ namespace Platformer
         /// Current user movement input.
         /// </summary>
         private float movement;
+        private float moveScalar = 1.0f;
+
+        public float MoveScalar
+        {
+            get { return moveScalar; }
+            set { moveScalar = value; }
+        }
 
         public float Movement
         {
@@ -244,13 +251,13 @@ namespace Platformer
                 keyboardState.IsKeyDown(Keys.Left) ||
                 keyboardState.IsKeyDown(Keys.A))
             {
-                movement = -1.0f;
+                movement = -1.0f * moveScalar;
             }
             else if (gamePadState.IsButtonDown(Buttons.DPadRight) ||
                      keyboardState.IsKeyDown(Keys.Right) ||
                      keyboardState.IsKeyDown(Keys.D))
             {
-                movement = 1.0f;
+                movement = 1.0f * moveScalar;
             }
 
             // Check if the player wants to jump.
