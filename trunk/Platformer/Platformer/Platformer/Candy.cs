@@ -20,6 +20,7 @@ namespace Platformer
         {
             this.collected = false;
             powerupTimer = new TimeSpan();
+            Color = Color.Aquamarine;
         }
 
         public override void LoadContent()
@@ -34,7 +35,7 @@ namespace Platformer
             collected = true;
             if (collectedBy.ageState == 0)
             {
-                collectedBy.MoveScalar = 2.0f;
+                collectedBy.MoveScalar = 3.0f;
             }
             else
             {

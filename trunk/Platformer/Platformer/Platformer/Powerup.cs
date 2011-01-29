@@ -24,11 +24,17 @@ namespace Platformer
         private Vector2 origin;
         private SoundEffect collectedSound;
 
-        public readonly Color Color = Color.Yellow;
+        public Color color = Color.Yellow;
 
         // The gem is animated from a base position along the Y axis.
         private Vector2 basePosition;
         private float bounce;
+
+        public Color Color
+        {
+            get { return color; }
+            set { color = value; }
+        }
 
         public Level Level
         {
