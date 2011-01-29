@@ -55,6 +55,10 @@ namespace Platformer
         // or handle exceptions, both of which can add unnecessary time to level loading.
         private const int numberOfLevels = 1;
 
+        private bool paused = false;
+        private bool pauseKeyDown = false;
+        
+
         public PlatformerGame()
         {   
             graphics = new GraphicsDeviceManager(this);
@@ -111,11 +115,15 @@ namespace Platformer
         {
             // Handle polling for our input and handling high-level input
             HandleInput();
+            CheckPauseKey(keyboardState);
 
-            // update our level, passing down the GameTime along with all of our input states
-            level.Update(gameTime, keyboardState, gamePadState, touchState, 
+            if(!paused)
+            {
+                // update our level, passing down the GameTime along with all of our input states
+                level.Update(gameTime, keyboardState, gamePadState, touchState, 
                          accelerometerState, Window.CurrentOrientation);
-
+            }
+            
             base.Update(gameTime);
         }
 
@@ -155,6 +163,34 @@ namespace Platformer
 
             wasContinuePressed = continuePressed;
         }
+
+        private void BeginPause(bool userInitiated)
+        {
+            paused = true;
+            MediaPlayer.Pause();
+            
+        }
+
+        private void EndPause()
+        {
+            paused = false;
+            MediaPlayer.Resume();
+
+        }
+
+        private void CheckPauseKey(KeyboardState keyboardstate)
+        {
+            bool pauseKeyDownThisFrame = keyboardState.IsKeyDown(Keys.P);
+            if (!pauseKeyDown && pauseKeyDownThisFrame)
+            {
+                if (!paused)
+                    BeginPause(true);
+                else
+                    EndPause();
+            }
+            pauseKeyDown = pauseKeyDownThisFrame;
+        }
+
 
         private void LoadNextLevel()
         {
