@@ -115,6 +115,7 @@ namespace Platformer
             set { movement = value; }
         }
 
+        //Call whenever character reaches age of next transition to modify character physics
         public void AdvanceAge()
         {
             /*  Starting values
