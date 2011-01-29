@@ -40,6 +40,7 @@ namespace Platformer
         Player player;
 
         private List<Gem> gems = new List<Gem>();
+        private List<Powerup> powerups = new List<Powerup>();
         private List<Enemy> enemies = new List<Enemy>();
 
         // Key locations in the level.        
@@ -79,6 +80,9 @@ namespace Platformer
         ContentManager content;
 
         private SoundEffect exitReachedSound;
+
+        private bool powerupActivated = false;
+        private Powerup activePowerup;
 
         #region Loading
 
@@ -398,6 +402,7 @@ namespace Platformer
                 timeRemaining -= gameTime.ElapsedGameTime;
                 Player.Update(gameTime, keyboardState, gamePadState, touchState, accelState, orientation);
                 UpdateGems(gameTime);
+                UpdatePowerups(gameTime);
 
                 // Falling off the bottom of the level kills the player.
                 if (Player.BoundingRectangle.Top >= Height * Tile.Height)
@@ -458,6 +463,33 @@ namespace Platformer
         }
 
         /// <summary>
+        /// Animates each enemy and allow them to kill the player.
+        /// </summary>
+        private void UpdatePowerups(GameTime gameTime)
+        {
+            if (activePowerup != null)
+            {
+                activePowerup.PowerupTimer(Player);
+            }
+            else
+            {
+                for (int i = 0; i < powerups.Count; ++i)
+                {
+                    Powerup powerup = powerups[i];
+
+                    powerup.Update(gameTime);
+
+                    if (powerup.BoundingCircle.Intersects(Player.BoundingRectangle) && !powerupActivated)
+                    {
+                        powerups.RemoveAt(i--);
+                        OnPowerupCollected(powerup, Player);
+                        activePowerup = powerup;
+                    }
+                }
+            }
+        }
+
+        /// <summary>
         /// Called when a gem is collected.
         /// </summary>
         /// <param name="gem">The gem that was collected.</param>
@@ -467,6 +499,17 @@ namespace Platformer
             score += Gem.PointValue;
 
             gem.OnCollected(collectedBy);
+        }
+
+        /// <summary>
+        /// Called when a powerup is collected.
+        /// </summary>
+        /// <param name="gem">The powerup that was collected.</param>
+        /// <param name="collectedBy">The player who collected this powerup.</param>
+        private void OnPowerupCollected(Powerup powerup, Player collectedBy)
+        {
+            powerup.OnCollected(collectedBy);
+            powerupActivated = true;
         }
 
         /// <summary>
