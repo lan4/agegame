@@ -71,17 +71,17 @@ namespace Platformer
  
         // Constants for controling horizontal movement
         private float MoveAcceleration = 13000.0f;
-        private float MaxMoveSpeed = 10000.0f;
+        private float MaxMoveSpeed = 50.0f;
         private float GroundDragFactor = 0.48f;
         private float AirDragFactor = 0.58f;
 
         // Constants for controlling vertical movement
        
-        private float MaxJumpTime = 0.35f;
+        private float MaxJumpTime = 0.0f;
         private float JumpLaunchVelocity = -3500.0f;
         private float GravityAcceleration = 3400.0f;
         private float MaxFallSpeed = 550.0f;
-        private float JumpControlPower = 0.14f; 
+        private float JumpControlPower = 0.0f; 
 
 
         // Input configuration
@@ -160,11 +160,31 @@ namespace Platformer
             ageState++;
             switch (ageState)
             {
-                case(1)://Set movement constants for baby
+                case(1)://Set movement constants for Adult
                     MediaPlayer.Volume = 0.8f;
-                break;
-                case(2)://Set movement constants for next stage
+                    MoveAcceleration = 13000.0f;
+                    MaxMoveSpeed = 100.0f;
+                    GroundDragFactor = 0.48f;
+                    AirDragFactor = 0.58f; 
+                    MaxJumpTime = 0.35f;
+                    JumpLaunchVelocity = -3500.0f;
+                    GravityAcceleration = 3400.0f;
+                    MaxFallSpeed = 550.0f;
+                    JumpControlPower = 0.14f; 
+                     break;
+                case(2)://Set movement constants for old man
                     MediaPlayer.Volume = 0.0f;
+                    MoveAcceleration = 13000.0f;
+                    MaxMoveSpeed = 50.0f;
+                    GroundDragFactor = 0.48f;
+                    AirDragFactor = 0.58f;    
+                    MaxJumpTime = 0.2f;
+                    JumpLaunchVelocity = -2000.0f;
+                    GravityAcceleration = 3400.0f;
+                    MaxFallSpeed = 550.0f;
+                    JumpControlPower = 0.14f; 
+                    break;
+
                 break;
             }
         }
@@ -290,7 +310,7 @@ namespace Platformer
             movement = gamePadState.ThumbSticks.Left.X * MoveStickScale;
 
             // Ignore small movements to prevent running in place.
-            if (Math.Abs(movement) < 0.5f)
+            if (Math.Abs(movement) < 0.1f)
                 movement = 0.0f;
 
             // Move the player with accelerometer
