@@ -36,7 +36,7 @@ namespace Platformer
         private SoundEffect jumpSound;
         private SoundEffect fallSound;
 
-        public int ageState=0;
+        public int ageState = 0;
 
         public Level Level
         {
@@ -122,15 +122,12 @@ namespace Platformer
             switch (ageState)
             {
                 case(0):
-                    timeToAge = TimeSpan.FromSeconds(110);
+                    timeToAge = TimeSpan.FromSeconds(240);
                 break;
                 case(1):
-                    timeToAge = TimeSpan.FromSeconds(100);
+                    timeToAge = TimeSpan.FromSeconds(120);
                 break;
                 case(2):
-                    timeToAge = TimeSpan.FromSeconds(90);
-                break;
-                case(3):
                     timeToAge = TimeSpan.FromSeconds(0);
                 break;
                 default:
@@ -168,9 +165,6 @@ namespace Platformer
                 break;
                 case(2)://Set movement constants for next stage
                     MediaPlayer.Volume = 0.0f;
-                break;
-                case(3)://etc...
-                    MediaPlayer.Volume = 0.1f;
                 break;
             }
         }
