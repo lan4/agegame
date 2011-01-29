@@ -40,7 +40,7 @@ namespace Platformer
         Player player;
 
         private List<Gem> gems = new List<Gem>();
-        private List<Powerup> powerups = new List<Powerup>();
+        //private List<Powerup> powerups = new List<Powerup>();
         private List<Enemy> enemies = new List<Enemy>();
 
         // Key locations in the level.        
@@ -81,8 +81,8 @@ namespace Platformer
 
         private SoundEffect exitReachedSound;
 
-        private bool powerupActivated = false;
-        private Powerup activePowerup;
+        //private bool powerupActivated = false;
+        //private Powerup activePowerup;
 
         #region Loading
 
@@ -402,7 +402,7 @@ namespace Platformer
                 timeRemaining -= gameTime.ElapsedGameTime;
                 Player.Update(gameTime, keyboardState, gamePadState, touchState, accelState, orientation);
                 UpdateGems(gameTime);
-                UpdatePowerups(gameTime);
+                //UpdatePowerups(gameTime);
 
                 // Falling off the bottom of the level kills the player.
                 if (Player.BoundingRectangle.Top >= Height * Tile.Height)
@@ -465,29 +465,29 @@ namespace Platformer
         /// <summary>
         /// Animates each enemy and allow them to kill the player.
         /// </summary>
-        private void UpdatePowerups(GameTime gameTime)
-        {
-            if (activePowerup != null)
-            {
-                activePowerup.PowerupTimer(Player);
-            }
-            else
-            {
-                for (int i = 0; i < powerups.Count; ++i)
-                {
-                    Powerup powerup = powerups[i];
+        //private void UpdatePowerups(GameTime gameTime)
+        //{
+        //    if (activePowerup != null)
+        //    {
+        //        activePowerup.PowerupTimer(Player);
+        //    }
+        //    else
+        //    {
+        //        for (int i = 0; i < powerups.Count; ++i)
+        //        {
+        //            Powerup powerup = powerups[i];
 
-                    powerup.Update(gameTime);
+        //            powerup.Update(gameTime);
 
-                    if (powerup.BoundingCircle.Intersects(Player.BoundingRectangle) && !powerupActivated)
-                    {
-                        powerups.RemoveAt(i--);
-                        OnPowerupCollected(powerup, Player);
-                        activePowerup = powerup;
-                    }
-                }
-            }
-        }
+        //            if (powerup.BoundingCircle.Intersects(Player.BoundingRectangle) && !powerupActivated)
+        //            {
+        //                powerups.RemoveAt(i--);
+        //                OnPowerupCollected(powerup, Player);
+        //                activePowerup = powerup;
+        //            }
+        //        }
+        //    }
+        //}
 
         /// <summary>
         /// Called when a gem is collected.
@@ -506,11 +506,11 @@ namespace Platformer
         /// </summary>
         /// <param name="gem">The powerup that was collected.</param>
         /// <param name="collectedBy">The player who collected this powerup.</param>
-        private void OnPowerupCollected(Powerup powerup, Player collectedBy)
-        {
-            powerup.OnCollected(collectedBy);
-            powerupActivated = true;
-        }
+        //private void OnPowerupCollected(Powerup powerup, Player collectedBy)
+        //{
+        //    powerup.OnCollected(collectedBy);
+        //    powerupActivated = true;
+        //}
 
         /// <summary>
         /// Called when the player is killed.
