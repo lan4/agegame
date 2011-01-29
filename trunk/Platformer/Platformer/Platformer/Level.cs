@@ -42,6 +42,8 @@ namespace Platformer
         private List<Gem> gems = new List<Gem>();
         private List<Powerup> powerups = new List<Powerup>();
         private List<Powerup> usedPowerups = new List<Powerup>();
+        private List<Obstacle> obstacles = new List<Obstacle>();
+        private List<Tile> obstacleTiles = new List<Tile>();
         private List<Enemy> enemies = new List<Enemy>();
 
         // Key locations in the level.        
@@ -209,6 +211,10 @@ namespace Platformer
                 case 'C':
                     return LoadCoffeeTile(x, y);
 
+                // Door
+                case 'D':
+                    return LoadDoorTile(x, y);
+
                 // Floating platform
                 case '-':
                     return LoadTile("Platform", TileCollision.Platform);
@@ -338,6 +344,16 @@ namespace Platformer
             return new Tile(null, TileCollision.Passable);
         }
 
+        private Tile LoadDoorTile(int x, int y)
+        {
+            Point position = GetBounds(x, y).Center;
+            obstacles.Add(new Door(this, new Vector2(position.X, position.Y)));
+
+            Tile newTile = new Tile(null, TileCollision.Impassable);
+            obstacleTiles.Add(newTile);
+            return newTile;
+        }
+
         /// <summary>
         /// Unloads the level content.
         /// </summary>
@@ -429,6 +445,7 @@ namespace Platformer
                 Player.CheckAge(timeRemaining);
                 UpdateGems(gameTime);
                 UpdatePowerups(gameTime);
+                UpdateObstacles(gameTime);
 
                 // Falling off the bottom of the level kills the player.
                 if (Player.BoundingRectangle.Top >= Height * Tile.Height)
@@ -515,6 +532,29 @@ namespace Platformer
             }
         }
 
+        private void UpdateObstacles(GameTime gameTime)
+        {
+            for (int i = 0; i < obstacles.Count; ++i)
+            {
+                Obstacle obstacle = obstacles[i];
+                Tile obTile = obstacleTiles[i];             
+
+                if (obstacle.BoundingCircle.Intersects(Player.BoundingRectangle))
+                {
+                    obstacle.Update(Player, gameTime);
+                    if (obstacle.Passable)
+                    {
+                        obTile.Collision = TileCollision.Passable;
+                    }
+                    else
+                    {
+                        obTile.Collision = TileCollision.Impassable;
+                    }
+                }
+            }
+
+        }
+
         /// <summary>
         /// Called when a gem is collected.
         /// </summary>
@@ -592,6 +632,12 @@ namespace Platformer
 
             foreach (Gem gem in gems)
                 gem.Draw(gameTime, spriteBatch);
+
+            foreach (Powerup powerup in powerups)
+                powerup.Draw(gameTime, spriteBatch);
+
+            foreach (Obstacle obstacle in obstacles)
+                obstacle.Draw(gameTime, spriteBatch);
 
             Player.Draw(gameTime, spriteBatch);
 

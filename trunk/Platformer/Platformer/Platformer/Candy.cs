@@ -32,11 +32,11 @@ namespace Platformer
         public override void OnCollected(Player collectedBy)
         {
             collected = true;
-            if (collectedBy.ageState == 0 || collectedBy.ageState == 1)
+            if (collectedBy.ageState == 0)
             {
                 collectedBy.MoveScalar = 2.0f;
             }
-            else if (collectedBy.ageState == 2 || collectedBy.ageState == 3)
+            else
             {
                 collectedBy.MoveScalar = 0.5f;
             }

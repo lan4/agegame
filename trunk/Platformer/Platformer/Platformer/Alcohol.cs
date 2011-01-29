@@ -9,13 +9,13 @@ namespace Platformer
     /// <summary>
     /// This is a game component that implements IUpdateable.
     /// </summary>
-    class Coffee : Powerup
+    class Alcohol : Powerup
     {
 
         private bool collected;
         private TimeSpan powerupTimer;
 
-        public Coffee(Level level, Vector2 position)
+        public Alcohol(Level level, Vector2 position)
             : base(level, position)
         {
             this.collected = false;
@@ -32,13 +32,13 @@ namespace Platformer
         public override void OnCollected(Player collectedBy)
         {
             collected = true;
-            if (collectedBy.ageState == 0)
+            if (collectedBy.ageState == 0 || collectedBy.ageState == 1)
             {
-                collectedBy.MoveScalar = 8.0f;
+                collectedBy.MoveScalar = 5.0f;
             }
-            else if (collectedBy.ageState == 1 || collectedBy.ageState == 2)
+            else if (collectedBy.ageState == 2 || collectedBy.ageState == 3)
             {
-                collectedBy.MoveScalar = 2.0f;
+                collectedBy.MoveScalar = 0.3f;
             }
         }
 
@@ -48,7 +48,7 @@ namespace Platformer
             Update(gameTime);
             if (collected == true)
             {
-                if (powerupTimer.Seconds >= 15)
+                if (powerupTimer.Seconds >= 5)
                 {
                     collected = false;
                     collectedBy.MoveScalar = 1.0f;
