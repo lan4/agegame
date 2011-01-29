@@ -217,7 +217,7 @@ namespace Platformer
 
                 // Floating platform
                 case '-':
-                    return LoadTile("Platform", TileCollision.Platform);
+                    return LoadTile("Tile_Grass", TileCollision.Platform);
 
                 // Various enemies
                 case 'A':
@@ -225,11 +225,11 @@ namespace Platformer
 
                 // Platform block
                 case '~':
-                    return LoadVarietyTile("BlockB", 2, TileCollision.Platform);
+                    return LoadVarietyTile("Tile_Grass", 2, TileCollision.Platform);
 
                 // Passable block
                 case ':':
-                    return LoadVarietyTile("BlockB", 2, TileCollision.Passable);
+                    return LoadVarietyTile("Tile_Floor", 2, TileCollision.Passable);
 
                 // Player 1 start point
                 case '1':
@@ -237,7 +237,7 @@ namespace Platformer
 
                 // Impassable block
                 case '#':
-                    return LoadVarietyTile("BlockA", 7, TileCollision.Impassable);
+                    return LoadVarietyTile("Tile_Grass", 7, TileCollision.Impassable);
 
                 // Unknown tile type character
                 default:
@@ -275,7 +275,7 @@ namespace Platformer
         private Tile LoadVarietyTile(string baseName, int variationCount, TileCollision collision)
         {
             int index = random.Next(variationCount);
-            return LoadTile(baseName + index, collision);
+            return LoadTile(baseName, collision);
         }
 
 
@@ -542,7 +542,7 @@ namespace Platformer
                 if (obstacle.BoundingCircle.Intersects(Player.BoundingRectangle))
                 {
                     obstacle.Update(Player, gameTime);
-                    if (obstacle.Passable)
+                    if (obstacle.Passable == true)
                     {
                         obTile.Collision = TileCollision.Passable;
                     }

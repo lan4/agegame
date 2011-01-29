@@ -16,12 +16,19 @@ namespace Platformer
         private Vector2 basePosition;
         private Texture2D texture;
         private bool passable;
+        //private Tile obTile;
 
         public bool Passable
         {
             get { return passable; }
             set { passable = value; }
         }
+
+        //public Tile ObTile
+        //{
+        //    get { return obTile; }
+        //    set { obTile = value; }
+        //}
 
         public Level Level
         {
@@ -66,18 +73,18 @@ namespace Platformer
 
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(texture, Position, null, Color.Red, 0.0f, origin, 1.0f, SpriteEffects.None, 0.0f);
+            spriteBatch.Draw(texture, Position, null, Color.White, 0.0f, origin, 1.0f, SpriteEffects.None, 0.0f);
         }
 
         /// <summary>
         /// Allows the game component to perform any initialization it needs to before starting
         /// to run.  This is where it can query for any required services and load content.
         /// </summary>
-        public void LoadContent()
-        {
-            Texture = Level.Content.Load<Texture2D>("Sprites/Gem");
-            Origin = new Vector2(Texture.Width / 2.0f, Texture.Height / 2.0f);
-        }
+        public abstract void LoadContent();
+        //{
+        //    Texture = Level.Content.Load<Texture2D>("Sprites/Gem");
+        //    Origin = new Vector2(Texture.Width / 2.0f, Texture.Height / 2.0f);
+        //}
 
         /// <summary>
         /// Allows the game component to update itself.
