@@ -107,7 +107,7 @@ namespace Platformer
             //Load Effect
             desaturateEffect = content.Load<Effect>("Effect/desaturate");
 
-            timeRemaining = TimeSpan.FromMinutes(2.0);
+            timeRemaining = TimeSpan.FromMinutes(6.0);
 
             LoadTiles(fileStream);
 
