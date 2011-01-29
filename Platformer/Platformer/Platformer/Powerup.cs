@@ -96,7 +96,7 @@ namespace Platformer
         }
 
         /// <summary>
-        /// Constructs a new gem.
+        /// Constructs a new Powerup.
         /// </summary>
         public Powerup(Level level, Vector2 position)
         {

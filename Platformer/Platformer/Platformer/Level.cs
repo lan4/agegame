@@ -195,6 +195,10 @@ namespace Platformer
                 case 'G':
                     return LoadGemTile(x, y);
 
+                // Candy
+                case 'P':
+                    return LoadCandyTile(x, y);
+
                 // Floating platform
                 case '-':
                     return LoadTile("Platform", TileCollision.Platform);
@@ -310,6 +314,14 @@ namespace Platformer
         {
             Point position = GetBounds(x, y).Center;
             gems.Add(new Gem(this, new Vector2(position.X, position.Y)));
+
+            return new Tile(null, TileCollision.Passable);
+        }
+
+        private Tile LoadCandyTile(int x, int y)
+        {
+            Point position = GetBounds(x, y).Center;
+            powerups.Add(new Candy(this, new Vector2(position.X, position.Y)));
 
             return new Tile(null, TileCollision.Passable);
         }
