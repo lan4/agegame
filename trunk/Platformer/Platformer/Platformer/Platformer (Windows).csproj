@@ -75,6 +75,7 @@
     <Compile Include="Bottle.cs" />
     <Compile Include="Candy.cs" />
     <Compile Include="Circle.cs" />
+    <Compile Include="Coffee.cs" />
     <Compile Include="Enemy.cs" />
     <Compile Include="Gem.cs" />
     <Compile Include="Layer.cs" />
