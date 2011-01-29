@@ -41,6 +41,7 @@ namespace Platformer
 
         private List<Gem> gems = new List<Gem>();
         private List<Powerup> powerups = new List<Powerup>();
+        private List<Powerup> usedPowerups = new List<Powerup>();
         private List<Enemy> enemies = new List<Enemy>();
 
         // Key locations in the level.        
@@ -81,9 +82,6 @@ namespace Platformer
         ContentManager content;
 
         private SoundEffect exitReachedSound;
-
-        private bool powerupActivated = false;
-        private Powerup activePowerup;
 
         #region Loading
 
@@ -481,25 +479,25 @@ namespace Platformer
         /// </summary>
         private void UpdatePowerups(GameTime gameTime)
         {
-            if (activePowerup != null)
+            for (int i = 0; i < powerups.Count; ++i)
             {
-                activePowerup.PowerupTimer(Player);
-            }
-            else
-            {
-                for (int i = 0; i < powerups.Count; ++i)
+                Powerup powerup = powerups[i];
+
+                powerup.PowerupTimer(Player, gameTime);
+
+                if (powerup.BoundingCircle.Intersects(Player.BoundingRectangle))
                 {
-                    Powerup powerup = powerups[i];
-
-                    powerup.Update(gameTime);
-
-                    if (powerup.BoundingCircle.Intersects(Player.BoundingRectangle) && !powerupActivated)
-                    {
-                        powerups.RemoveAt(i--);
-                        OnPowerupCollected(powerup, Player);
-                        activePowerup = powerup;
-                    }
+                    usedPowerups.Add(powerup);
+                    powerups.RemoveAt(i--);
+                    OnPowerupCollected(powerup, Player);
                 }
+            }
+
+            for (int j = 0; j < usedPowerups.Count; ++j)
+            {
+                Powerup usedPowerup = usedPowerups[j];
+
+                usedPowerup.PowerupTimer(Player, gameTime);
             }
         }
 
@@ -523,7 +521,6 @@ namespace Platformer
         private void OnPowerupCollected(Powerup powerup, Player collectedBy)
         {
             powerup.OnCollected(collectedBy);
-            powerupActivated = true;
         }
 
         /// <summary>
