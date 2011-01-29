@@ -51,6 +51,7 @@ namespace Platformer
         // Level game state.
         private Random random = new Random(354668); // Arbitrary, but constant seed
         private float cameraPosition;
+        public float cameraPositionYAxis; 
 
         public int Score
         {
@@ -557,7 +558,7 @@ namespace Platformer
             spriteBatch.End();
 
             ScrollCamera(spriteBatch.GraphicsDevice.Viewport);
-            Matrix cameraTransform = Matrix.CreateTranslation(-cameraPosition, 0.0f, 0.0f);
+            Matrix cameraTransform = Matrix.CreateTranslation(-cameraPosition, -cameraPositionYAxis, 0.0f);
             spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, SamplerState.LinearClamp, DepthStencilState.Default,
                               RasterizerState.CullCounterClockwise, null, cameraTransform);
 
@@ -592,6 +593,12 @@ const float ViewMargin = 0.35f;
             float marginLeft = cameraPosition + marginWidth;
             float marginRight = cameraPosition + viewport.Width - marginWidth;
 
+            // Calculate the scrolling borders for the Y-axis.  
+            const float TopMargin = 0.3f;
+            const float BottomMargin = 0.1f;
+            float marginTop = cameraPositionYAxis + viewport.Height * TopMargin;
+            float marginBottom = cameraPositionYAxis + viewport.Height - viewport.Height * BottomMargin;
+
             // Calculate how far to scroll when the player is near the edges of the screen.
             float cameraMovement = 0.0f;
             if (Player.Position.X < marginLeft)
@@ -599,9 +606,18 @@ const float ViewMargin = 0.35f;
             else if (Player.Position.X > marginRight)
                 cameraMovement = Player.Position.X - marginRight;
 
+            // Calculate how far to vertically scroll when the player is near the top or bottom of the screen.  
+            float cameraMovementY = 0.0f;
+            if (Player.Position.Y < marginTop) //above the top margin  
+                cameraMovementY = Player.Position.Y - marginTop;
+            else if (Player.Position.Y > marginBottom) //below the bottom margin  
+                cameraMovementY = Player.Position.Y - marginBottom;
+
             // Update the camera position, but prevent scrolling off the ends of the level.
             float maxCameraPosition = Tile.Width * Width - viewport.Width;
+            float maxCameraPositionY = Tile.Height * Height - viewport.Height;
             cameraPosition = MathHelper.Clamp(cameraPosition + cameraMovement, 0.0f, maxCameraPosition);
+            cameraPositionYAxis = MathHelper.Clamp(cameraPositionYAxis + cameraMovementY, 0.0f, maxCameraPositionY);
         }
 
         /// <summary>
