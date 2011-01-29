@@ -35,6 +35,8 @@ namespace Platformer
         private SoundEffect jumpSound;
         private SoundEffect fallSound;
 
+        public int ageState=0;
+
         public Level Level
         {
             get { return level; }
@@ -65,20 +67,21 @@ namespace Platformer
 
         Vector2 velocity;
 
+ 
         // Constants for controling horizontal movement
-        private const float MoveAcceleration = 10000.0f;
-        private const float MaxMoveSpeed = 10000.0f;
-        private const float GroundDragFactor = 0.48f;
-        private const float AirDragFactor = 0.58f;
+        private float MoveAcceleration = 13000.0f;
+        private float MaxMoveSpeed = 10000.0f;
+        private float GroundDragFactor = 0.48f;
+        private float AirDragFactor = 0.58f;
 
         // Constants for controlling vertical movement
        
-        private const float MaxJumpTime = 0.35f;
-        private const float JumpLaunchVelocity = -3500.0f;
-        private const float GravityAcceleration = 3400.0f;
-        private const float MaxFallSpeed = 550.0f;
-        private const float JumpControlPower = 0.14f; 
-        
+        private float MaxJumpTime = 0.35f;
+        private float JumpLaunchVelocity = -3500.0f;
+        private float GravityAcceleration = 3400.0f;
+        private float MaxFallSpeed = 550.0f;
+        private float JumpControlPower = 0.14f; 
+
 
         // Input configuration
         private const float MoveStickScale = 1.0f;
@@ -111,6 +114,40 @@ namespace Platformer
             get { return movement; }
             set { movement = value; }
         }
+
+        public void AdvanceAge()
+        {
+            /*  Starting values
+            MoveAcceleration = 13000.0f;
+            MaxMoveSpeed = 10000.0f;
+            GroundDragFactor = 0.48f;
+            AirDragFactor = 0.58f;
+                   
+            MaxJumpTime = 0.35f;
+            JumpLaunchVelocity = -3500.0f;
+            GravityAcceleration = 3400.0f;
+            MaxFallSpeed = 550.0f;
+            JumpControlPower = 0.14f; 
+            */
+
+            ageState++;
+            switch (ageState)
+            {
+                case(0)://Set movement constants for baby
+
+                break;
+                case(1)://Set movement constants for next stage
+
+                break;
+                case(2)://etc...
+
+                break;
+                case(3):
+
+                break;
+            }
+        }
+
 
         // Jumping state
         private bool isJumping;
