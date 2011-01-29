@@ -99,7 +99,8 @@ namespace Platformer
             try
             {
                 MediaPlayer.IsRepeating = true;
-                MediaPlayer.Play(Content.Load<Song>("Sounds/Music"));
+                MediaPlayer.Volume = 1.0f;
+                MediaPlayer.Play(Content.Load<Song>("Sounds/BackgroundMusic"));
             }
             catch { }
 
