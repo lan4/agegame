@@ -37,6 +37,7 @@ namespace Platformer
         private SoundEffect fallSound;
 
         public int ageState = 0;
+        private int cryUses = 1;
 
         public Level Level
         {
@@ -191,6 +192,10 @@ namespace Platformer
             }
         }
 
+        public void Cry()
+        {
+
+        }
 
         // Jumping state
         private bool isJumping;

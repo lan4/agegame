@@ -22,11 +22,19 @@ namespace Platformer
             if (player.ageState >= 1)
             {
                 Passable = true;
+                //Tile.Collision = TileCollision.Passable;
             }
             else
             {
                 Passable = false;
+                //Tile.Collision = TileCollision.Impassable;
             }
+        }
+
+        public override void LoadContent()
+        {
+            Texture = Level.Content.Load<Texture2D>("Tiles/Tile_Door");
+            Origin = new Vector2(Texture.Width / 2.0f, Texture.Height / 2.0f);
         }
 
     }
