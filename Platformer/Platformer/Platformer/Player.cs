@@ -13,6 +13,7 @@ using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Input.Touch;
+using Microsoft.Xna.Framework.Media;
 
 namespace Platformer
 {
@@ -115,6 +116,34 @@ namespace Platformer
             set { movement = value; }
         }
 
+        public void CheckAge(TimeSpan gameTime)
+        {
+            TimeSpan timeToAge;
+            switch (ageState)
+            {
+                case(0):
+                    timeToAge = TimeSpan.FromSeconds(110);
+                break;
+                case(1):
+                    timeToAge = TimeSpan.FromSeconds(100);
+                break;
+                case(2):
+                    timeToAge = TimeSpan.FromSeconds(90);
+                break;
+                case(3):
+                    timeToAge = TimeSpan.FromSeconds(0);
+                break;
+                default:
+                    timeToAge = TimeSpan.FromSeconds(0);
+                break;
+            }
+
+            if (gameTime < timeToAge)
+            {
+                this.AdvanceAge();
+            }
+        }
+
         //Call whenever character reaches age of next transition to modify character physics
         public void AdvanceAge()
         {
@@ -134,17 +163,14 @@ namespace Platformer
             ageState++;
             switch (ageState)
             {
-                case(0)://Set movement constants for baby
-
+                case(1)://Set movement constants for baby
+                    MediaPlayer.Volume = 0.8f;
                 break;
-                case(1)://Set movement constants for next stage
-
+                case(2)://Set movement constants for next stage
+                    MediaPlayer.Volume = 0.0f;
                 break;
-                case(2)://etc...
-
-                break;
-                case(3):
-
+                case(3)://etc...
+                    MediaPlayer.Volume = 0.1f;
                 break;
             }
         }

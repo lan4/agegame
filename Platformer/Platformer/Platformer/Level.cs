@@ -414,6 +414,7 @@ namespace Platformer
             {
                 timeRemaining -= gameTime.ElapsedGameTime;
                 Player.Update(gameTime, keyboardState, gamePadState, touchState, accelState, orientation);
+                Player.CheckAge(timeRemaining);
                 UpdateGems(gameTime);
                 UpdatePowerups(gameTime);
 
