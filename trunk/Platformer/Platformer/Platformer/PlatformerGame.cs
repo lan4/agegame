@@ -105,7 +105,7 @@ namespace Platformer
             {
                 MediaPlayer.IsRepeating = true;
                 MediaPlayer.Volume = 1.0f;
-                MediaPlayer.Play(Content.Load<Song>("Sounds/BackgroundMusic"));
+                // MediaPlayer.Play(Content.Load<Song>("Sounds/BackgroundMusic"));
             }
             catch { }
 
@@ -160,7 +160,10 @@ namespace Platformer
 
             // Perform the appropriate action to start the game
             if (!gameStarted && startPressed)
+            {
                 gameStarted = true;
+                MediaPlayer.Play(Content.Load<Song>("Sounds/BackgroundMusic"));
+            }
 
             if ((!gameStarted || paused) && quitPressed)
                 Exit();
