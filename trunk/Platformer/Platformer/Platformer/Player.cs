@@ -379,7 +379,7 @@ namespace Platformer
             {
                 movement = -MovementSpeed * moveScalar;
             }
-            else if (true || gamePadState.IsButtonDown(Buttons.DPadRight) ||
+            else if (gamePadState.IsButtonDown(Buttons.DPadRight) ||
                      keyboardState.IsKeyDown(Keys.Right) ||
                      keyboardState.IsKeyDown(Keys.D))
             {
