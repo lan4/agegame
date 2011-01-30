@@ -45,6 +45,7 @@ namespace Platformer
         private SoundEffect killedSound;
         private SoundEffect jumpSound;
         private SoundEffect fallSound;
+        private SoundEffect crySound;
 
         public int ageState = 0;
         private int cryUses = 1;
@@ -305,6 +306,7 @@ namespace Platformer
             killedSound = Level.Content.Load<SoundEffect>("Sounds/PlayerKilled");
             jumpSound = Level.Content.Load<SoundEffect>("Sounds/PlayerJump");
             fallSound = Level.Content.Load<SoundEffect>("Sounds/PlayerFall");
+            crySound = Level.Content.Load<SoundEffect>("Sounds/cry");
         }
 
         /// <summary>
@@ -348,6 +350,7 @@ namespace Platformer
                 else if (cryStatus)
                 {
                     sprite.PlayAnimation(cryAnimation);
+                    crySound.Play();
                 }
                 else
                 {
