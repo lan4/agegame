@@ -28,7 +28,8 @@ namespace Platformer
         private Animation jumpAnimation;
         private Animation celebrateAnimation;
         private Animation dieAnimation;
-        private SpriteEffects flip = SpriteEffects.None;
+        private Animation cryAnimation;
+        private SpriteEffects flip = SpriteEffects.FlipHorizontally;
         private AnimationPlayer sprite;
 
         // Sounds
@@ -248,12 +249,12 @@ namespace Platformer
         public void LoadContent()
         {
             // Load animated textures.
-            idleAnimation = new Animation(Level.Content.Load<Texture2D>("Sprites/Player/Idle"), 0.1f, true);
+            idleAnimation = new Animation(Level.Content.Load<Texture2D>("Sprites/Player/Player_Baby_Idle"), 0.1f, true);
             runAnimation = new Animation(Level.Content.Load<Texture2D>("Sprites/Player/Player_Baby_Walk"), 0.1f, true);
-            jumpAnimation = new Animation(Level.Content.Load<Texture2D>("Sprites/Player/Jump"), 0.1f, false);
-            celebrateAnimation = new Animation(Level.Content.Load<Texture2D>("Sprites/Player/Celebrate"), 0.1f, false);
-            dieAnimation = new Animation(Level.Content.Load<Texture2D>("Sprites/Player/Die"), 0.1f, false);
-            //cryAnimation = new Animation(Level.Content.Load<Texture2D>("Sprites/Player/Player_Baby_Cry"), 0.1f, false);
+            jumpAnimation = new Animation(Level.Content.Load<Texture2D>("Sprites/Player/Player_Baby_Idle"), 0.1f, false);
+            celebrateAnimation = new Animation(Level.Content.Load<Texture2D>("Sprites/Player/Player_Baby_Idle"), 0.1f, false);
+            dieAnimation = new Animation(Level.Content.Load<Texture2D>("Sprites/Player/Player_Baby_Cry"), 0.2f, true);
+            cryAnimation = new Animation(Level.Content.Load<Texture2D>("Sprites/Player/Player_Baby_Cry"), 0.2f, true);
 
             // Calculate bounds within texture size.            
             int width = (int)(idleAnimation.FrameWidth * 0.4);
@@ -305,6 +306,10 @@ namespace Platformer
                 if (Math.Abs(Velocity.X) - 0.02f > 0)
                 {
                     sprite.PlayAnimation(runAnimation);
+                }
+                else if (cryStatus)
+                {
+                    sprite.PlayAnimation(cryAnimation);
                 }
                 else
                 {
@@ -375,8 +380,8 @@ namespace Platformer
             {
                 movement = MovementSpeed * moveScalar;
             }
-            else if (gamePadState.IsButtonDown(Buttons.B) ||
-                     keyboardState.IsKeyDown(Keys.F) && !cryStatus)
+            else if ((gamePadState.IsButtonDown(Buttons.B) ||
+                     keyboardState.IsKeyDown(Keys.F)) && !cryStatus)
             {
                 Cry();
             }

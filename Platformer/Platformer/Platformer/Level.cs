@@ -356,7 +356,7 @@ namespace Platformer
         private Tile LoadDoorTile(int x, int y)
         {
             Point position = GetBounds(x, y).Center;
-            obstacles.Add(new Door(this, new Vector2(position.X, position.Y)));
+            //obstacles.Add(new Door(this, new Vector2(position.X, position.Y)));
 
             Tile newTile = new Tile(null, TileCollision.Impassable);
             obstacleTiles.Add(newTile);
