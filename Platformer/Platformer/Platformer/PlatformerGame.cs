@@ -103,7 +103,7 @@ namespace Platformer
             //So we have to catch the exception and throw it away
             try
             {
-                MediaPlayer.IsRepeating = true;
+                MediaPlayer.IsRepeating = false;
                 MediaPlayer.Volume = 1.0f;
                 // MediaPlayer.Play(Content.Load<Song>("Sounds/BackgroundMusic"));
             }
@@ -181,6 +181,7 @@ namespace Platformer
                     if (level.ReachedExit)
                         LoadNextLevel();
                     else
+                        MediaPlayer.Play(Content.Load<Song>("Sounds/BackgroundMusic"));
                         ReloadCurrentLevel();
                 }
             }

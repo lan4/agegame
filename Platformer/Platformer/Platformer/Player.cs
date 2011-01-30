@@ -173,7 +173,7 @@ namespace Platformer
             switch (ageState)
             {
                 case(1)://Set movement constants for Adult
-                    MediaPlayer.Volume = 0.0f;
+                    MediaPlayer.Volume = 0.8f;
                     MoveAcceleration = 13000.0f;
                     MaxMoveSpeed = 1000.0f;
                     GroundDragFactor = 0.48f;
@@ -186,7 +186,7 @@ namespace Platformer
                     MovementSpeed = 1.0f;
                     break;
                 case(2)://Set movement constants for old man
-                    MediaPlayer.Volume = 0.0f;
+                    MediaPlayer.Volume = 0.5f;
                     MoveAcceleration = 13000.0f;
                     MaxMoveSpeed = 1000.0f;
                     GroundDragFactor = 0.48f;
@@ -379,7 +379,7 @@ namespace Platformer
             {
                 movement = -MovementSpeed * moveScalar;
             }
-            else if (gamePadState.IsButtonDown(Buttons.DPadRight) ||
+            else if (true || gamePadState.IsButtonDown(Buttons.DPadRight) ||
                      keyboardState.IsKeyDown(Keys.Right) ||
                      keyboardState.IsKeyDown(Keys.D))
             {
