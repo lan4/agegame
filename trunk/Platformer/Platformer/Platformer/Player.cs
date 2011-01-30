@@ -106,6 +106,7 @@ namespace Platformer
         public bool IsOnGround
         {
             get { return isOnGround; }
+            set { isOnGround = value; }
         }
         bool isOnGround;
 

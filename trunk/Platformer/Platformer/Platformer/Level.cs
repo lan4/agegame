@@ -227,7 +227,7 @@ namespace Platformer
 
                 // Platform block
                 case '~':
-                    return LoadVarietyTile("Tile_Grass", 2, TileCollision.Platform);
+                    return LoadVarietyTile("Tile_Floor", 2, TileCollision.Platform);
 
                 // Passable block
                 case ':':
@@ -324,7 +324,7 @@ namespace Platformer
             Vector2 position = RectangleExtensions.GetBottomCenter(GetBounds(x, y));
             adults.Add(new Adult(this, position, spriteSet));
 
-            return new Tile(null, TileCollision.Impassable);
+            return new Tile(null, TileCollision.Passable);
         }
 
         /// <summary>
@@ -457,6 +457,7 @@ namespace Platformer
                 UpdateGems(gameTime);
                 UpdatePowerups(gameTime);
                 UpdateObstacles(gameTime);
+                UpdateAdults(gameTime);
 
                 // Falling off the bottom of the level kills the player.
                 if (Player.BoundingRectangle.Top >= Height * Tile.Height)

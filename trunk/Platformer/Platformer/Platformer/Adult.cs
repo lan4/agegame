@@ -59,7 +59,7 @@ namespace Platformer
         /// <summary>
         /// The direction this enemy is facing and moving along the X axis.
         /// </summary>
-        private FaceDirection direction = FaceDirection.Right;
+        private FaceDirection direction = FaceDirection.Left;
 
         /// <summary>
         /// How long this enemy has been waiting before turning around.
@@ -74,7 +74,7 @@ namespace Platformer
         /// <summary>
         /// The speed at which this enemy moves along the X axis.
         /// </summary>
-        private const float MoveSpeed = 20.0f;
+        private const float MoveSpeed = 300.0f;
 
         /// <summary>
         /// Constructs a new Enemy.
@@ -114,27 +114,34 @@ namespace Platformer
         /// </summary>
         public void Update(GameTime gameTime, Player controlledPlayer)
         {
+            //Rectangle adultBounds = BoundingRectangle;
+            //Rectangle bounds = controlledPlayer.BoundingRectangle;
+            //if (controlledPlayer.BoundingRectangle.Intersects(this.BoundingRectangle) && !runFlag)
+            //{
+
+            //}
+                   
             if (runFlag)
             {
                 RunAway(gameTime);
             }
-            else if (Math.Abs(controlledPlayer.Position.X - this.Position.X) <= 20 && controlledPlayer.IsCrying)
+            else if (controlledPlayer.IsCrying)
             {
-                if (controlledPlayer.Position.X < this.Position.X)
+                if ((controlledPlayer.Position.X - this.Position.X) * dir <= 100)
                 {
-                    dir = 1;
+                    if (controlledPlayer.Position.X < this.Position.X)
+                    {
+                        dir = 1;
+                        direction = FaceDirection.Right;
+                    }
+                    else
+                    {
+                        dir = -1;
+                        direction = FaceDirection.Left;
+                    }
+                    runFlag = true;
                 }
-                else
-                {
-                    dir = -1;
-                }
-                runFlag = true;
             }
-            else if (Math.Abs(controlledPlayer.Position.X - this.Position.X) >= 80)
-            {
-                runFlag = false;
-            }
-
         }
 
         public void RunAway(GameTime gameTime)
