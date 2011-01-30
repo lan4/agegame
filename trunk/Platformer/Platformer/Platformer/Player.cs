@@ -234,11 +234,6 @@ namespace Platformer
             }
         }
 
-        public void Buy()
-        {
-            //Might not be needed
-        }
-
         public void stopPlayer()
         {
             position = new Vector2(position.X - 5.0f, position.Y);
@@ -428,9 +423,6 @@ namespace Platformer
             {
                 if (!cryStatus && ageState == 0)
                     Cry();
-                else if (ageState == 1)
-                    Buy();
-
             }
 
 
