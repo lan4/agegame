@@ -650,7 +650,7 @@ namespace Platformer
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             //for drawing greyscale
-            percentage = (float)(gameTime.TotalGameTime.TotalSeconds / TimeSpan.FromMinutes(1.00).TotalSeconds);
+            percentage = (float)(gameTime.TotalGameTime.TotalSeconds / TimeSpan.FromMinutes(5.00).TotalSeconds);
 
             //spriteBatch.Begin();
             spriteBatch.Begin(0, null, null, null, null, desaturateEffect);
