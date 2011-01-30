@@ -42,7 +42,7 @@ namespace Platformer
         private List<Gem> gems = new List<Gem>();
         private List<Powerup> powerups = new List<Powerup>();
         private List<Powerup> usedPowerups = new List<Powerup>();
-        private List<Obstacle> obstacles = new List<Obstacle>();
+        private List<Door> obstacles = new List<Door>();
         private List<Tile> obstacleTiles = new List<Tile>();
         private List<Enemy> enemies = new List<Enemy>();
         private List<Adult> adults = new List<Adult>();
@@ -356,7 +356,7 @@ namespace Platformer
         private Tile LoadDoorTile(int x, int y)
         {
             Point position = GetBounds(x, y).Center;
-            //obstacles.Add(new Door(this, new Vector2(position.X, position.Y)));
+            obstacles.Add(new Door(this, new Vector2(position.X, position.Y)));
 
             Tile newTile = new Tile(null, TileCollision.Impassable);
             obstacleTiles.Add(newTile);
@@ -554,7 +554,7 @@ namespace Platformer
         {
             for (int i = 0; i < obstacles.Count; ++i)
             {
-                Obstacle obstacle = obstacles[i];
+                Door obstacle = obstacles[i];
                 Tile obTile = obstacleTiles[i];             
 
                 if (obstacle.BoundingCircle.Intersects(Player.BoundingRectangle))
@@ -657,7 +657,7 @@ namespace Platformer
             foreach (Powerup powerup in powerups)
                 powerup.Draw(gameTime, spriteBatch);
 
-            foreach (Obstacle obstacle in obstacles)
+            foreach (Door obstacle in obstacles)
                 obstacle.Draw(gameTime, spriteBatch);
 
             Player.Draw(gameTime, spriteBatch);
