@@ -633,11 +633,14 @@ namespace Platformer
         /// </summary>
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            float percentage=(float)(gameTime.TotalGameTime.TotalSeconds/TimeSpan.FromMinutes(5.00).TotalSeconds);
+            float percentage=(float)(gameTime.TotalGameTime.TotalSeconds/TimeSpan.FromMinutes(4.00).TotalSeconds);
+
             //spriteBatch.Begin();
             spriteBatch.Begin(0, null, null, null, null, desaturateEffect);
+
+
             for (int i = 0; i <= EntityLayer; ++i)
-                layers[i].Draw(spriteBatch, cameraPosition, percentage);
+                layers[i].Draw(spriteBatch, cameraPosition, (1-percentage));
             spriteBatch.End();
 
             ScrollCamera(spriteBatch.GraphicsDevice.Viewport);

@@ -70,7 +70,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Accelerometer.cs" />
-    <Compile Include="Adult.cs" />
     <Compile Include="Alcohol.cs" />
     <Compile Include="Animation.cs" />
     <Compile Include="AnimationPlayer.cs" />
