@@ -172,8 +172,8 @@ namespace Platformer
             // Verify that the level has a beginning and an end.
             if (Player == null)
                 throw new NotSupportedException("A level must have a starting point.");
-            if (exit == InvalidPosition)
-                throw new NotSupportedException("A level must have an exit.");
+     //       if (exit == InvalidPosition)
+                //throw new NotSupportedException("A level must have an exit.");
 
         }
 

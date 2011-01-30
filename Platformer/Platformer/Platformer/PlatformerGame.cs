@@ -250,6 +250,13 @@ namespace Platformer
 
             DrawHud();
 
+            Rectangle titleSafeArea = GraphicsDevice.Viewport.TitleSafeArea;
+            Vector2 hudLocation = new Vector2(titleSafeArea.X, titleSafeArea.Y);
+
+            //float percentage = (gameTime.TotalGameTime.Seconds /TimeSpan.FromMinutes(6.00).Seconds);
+            spriteBatch.Begin();
+            //DrawShadowedString(hudFont, percentage.ToString(), hudLocation+new Vector2(0,50), Color.Yellow);
+            spriteBatch.End();
             base.Draw(gameTime);
         }
 
@@ -265,6 +272,9 @@ namespace Platformer
             // Draw time remaining. Uses modulo division to cause blinking when the
             // player is running out of time.
             string timeString = "TIME: " + level.TimeRemaining.Minutes.ToString("00") + ":" + level.TimeRemaining.Seconds.ToString("00");
+
+            int percentage = (int)level.TimeRemaining.TotalSeconds*80/360;
+
             Color timeColor;
             if (level.TimeRemaining > WarningTime ||
                 level.ReachedExit ||
@@ -277,6 +287,8 @@ namespace Platformer
                 timeColor = Color.Red;
             }
             DrawShadowedString(hudFont, timeString, hudLocation, timeColor);
+
+            DrawShadowedString(hudFont, "Age: "+(80-percentage).ToString(), hudLocation+new Vector2(0,60), timeColor);
 
             // Draw score
             float timeHeight = hudFont.MeasureString(timeString).Y;
