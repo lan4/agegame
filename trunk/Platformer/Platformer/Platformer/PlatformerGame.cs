@@ -101,9 +101,9 @@ namespace Platformer
             coffeeOverlay = Content.Load<Texture2D>("Overlays/coffee_menu");
             candyOverlay = Content.Load<Texture2D>("Overlays/candy_menu");
             moneyOverlay = Content.Load<Texture2D>("Overlays/money_menu");
-            winOverlay = Content.Load<Texture2D>("Overlays/you_win");
-            loseOverlay = Content.Load<Texture2D>("Overlays/you_lose");
-            diedOverlay = Content.Load<Texture2D>("Overlays/you_died");
+            winOverlay = Content.Load<Texture2D>("Overlays/death");
+            loseOverlay = Content.Load<Texture2D>("Overlays/death");
+            diedOverlay = Content.Load<Texture2D>("Overlays/death");
 
             //Known issue that you get exceptions if you use Media PLayer while connected to your PC
             //See http://social.msdn.microsoft.com/Forums/en/windowsphone7series/thread/c8a243d2-d360-46b1-96bd-62b1ef268c66
