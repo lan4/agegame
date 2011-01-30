@@ -105,6 +105,8 @@ namespace Platformer
         public void OnCollected(Player collectedBy)
         {
             collectedSound.Play();
+            if (collectedBy.collectedMoney == 0)
+                collectedBy.collectedMoney = 1;
         }
 
         /// <summary>

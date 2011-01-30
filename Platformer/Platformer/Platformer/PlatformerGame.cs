@@ -32,6 +32,10 @@ namespace Platformer
 
         private Texture2D menuOverlay;
         private Texture2D pauseOverlay;
+        private Texture2D milkOverlay;
+        private Texture2D candyOverlay;
+        private Texture2D coffeeOverlay;
+        private Texture2D moneyOverlay;
         private Texture2D winOverlay;
         private Texture2D loseOverlay;
         private Texture2D diedOverlay;
@@ -93,6 +97,10 @@ namespace Platformer
             // Load overlay textures
             menuOverlay = Content.Load<Texture2D>("Overlays/main_menu");
             pauseOverlay = Content.Load<Texture2D>("Overlays/pause_menu");
+            milkOverlay = Content.Load<Texture2D>("Overlays/milk_menu");
+            coffeeOverlay = Content.Load<Texture2D>("Overlays/coffee_menu");
+            candyOverlay = Content.Load<Texture2D>("Overlays/candy_menu");
+            moneyOverlay = Content.Load<Texture2D>("Overlays/money_menu");
             winOverlay = Content.Load<Texture2D>("Overlays/you_win");
             loseOverlay = Content.Load<Texture2D>("Overlays/you_lose");
             diedOverlay = Content.Load<Texture2D>("Overlays/you_died");
@@ -122,6 +130,22 @@ namespace Platformer
             // Handle polling for our input and handling high-level input
             HandleInput();
             CheckPauseKey(keyboardState);
+            if (level.Player.collectedMilk == 1)
+            {
+                BeginPause(true);
+            }
+            else if (level.Player.collectedCoffee == 1)
+            {
+                BeginPause(true);
+            }
+            else if (level.Player.collectedCandy == 1)
+            {
+                BeginPause(true);
+            }
+            else if (level.Player.collectedMoney == 1)
+            {
+                BeginPause(true);
+            }
 
             if(!paused)
             {
@@ -146,25 +170,20 @@ namespace Platformer
                 Exit();
 
             bool continuePressed =
-                keyboardState.IsKeyDown(Keys.Space) ||
+                keyboardState.IsKeyDown(Keys.Enter) ||
                 gamePadState.IsButtonDown(Buttons.A) ||
                 touchState.AnyTouch();
-
-            bool startPressed =
-                keyboardState.IsKeyDown(Keys.Enter) ||
-                gamePadState.IsButtonDown(Buttons.A);
 
             bool quitPressed =
                 keyboardState.IsKeyDown(Keys.Q) ||
                 gamePadState.IsButtonDown(Buttons.B);
 
             // Perform the appropriate action to start the game
-            if (!gameStarted && startPressed)
+            if (!gameStarted && continuePressed && !wasContinuePressed)
             {
                 gameStarted = true;
                 MediaPlayer.Play(Content.Load<Song>("Sounds/BackgroundMusic"));
             }
-
             if ((!gameStarted || paused) && quitPressed)
                 Exit();
 
@@ -172,7 +191,27 @@ namespace Platformer
             // to get the player back to playing.
             if (gameStarted && !wasContinuePressed && continuePressed)
             {
-                if (!level.Player.IsAlive)
+                if (level.Player.collectedMilk == 1)
+                {
+                    EndPause();
+                    level.Player.collectedMilk = 2;
+                }
+                else if (level.Player.collectedCoffee == 1)
+                {
+                    EndPause();
+                    level.Player.collectedCoffee = 2;
+                }
+                else if (level.Player.collectedCandy == 1)
+                {
+                    EndPause();
+                    level.Player.collectedCandy = 2;
+                }
+                else if (level.Player.collectedMoney == 1)
+                {
+                    EndPause();
+                    level.Player.collectedMoney = 2;
+                }
+                else if (!level.Player.IsAlive)
                 {
                     level.StartNewLife();
                 }
@@ -182,7 +221,7 @@ namespace Platformer
                         LoadNextLevel();
                     else
                         MediaPlayer.Play(Content.Load<Song>("Sounds/BackgroundMusic"));
-                        ReloadCurrentLevel();
+                    ReloadCurrentLevel();
                 }
             }
 
@@ -200,7 +239,6 @@ namespace Platformer
         {
             paused = false;
             MediaPlayer.Resume();
-
         }
 
         private void CheckPauseKey(KeyboardState keyboardstate)
@@ -211,7 +249,9 @@ namespace Platformer
                 if (!paused)
                     BeginPause(true);
                 else
+                {
                     EndPause();
+                }
             }
             pauseKeyDown = pauseKeyDownThisFrame;
         }
@@ -299,6 +339,22 @@ namespace Platformer
             if (!gameStarted)
             {
                 status = menuOverlay;
+            }
+            else if (level.Player.collectedMilk == 1)
+            {
+                status = milkOverlay;
+            }
+            else if (level.Player.collectedCoffee == 1)
+            {
+                status = coffeeOverlay;
+            }
+            else if (level.Player.collectedCandy == 1)
+            {
+                status = candyOverlay;
+            }
+            else if (level.Player.collectedMoney == 1)
+            {
+                status = moneyOverlay;
             }
             else if (paused)
             {

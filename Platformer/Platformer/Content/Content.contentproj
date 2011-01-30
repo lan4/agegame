@@ -387,6 +387,37 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Sounds\BackgroundMusic.WMA">
+      <Name>BackgroundMusic</Name>
+      <Importer>WmaImporter</Importer>
+      <Processor>SongProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Overlays\milk_menu.png">
+      <Name>milk_menu</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Sprites\Player\Player_Adult_Idle.png">
+      <Name>Player_Adult_Idle</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\Player\Player_Adult_Jump.png">
+      <Name>Player_Adult_Jump</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\Player\Player_Adult_Walk.png">
+      <Name>Player_Adult_Walk</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
     <Compile Include="Sounds\cry.WMA">
       <Name>cry</Name>
       <Importer>WmaImporter</Importer>
@@ -394,10 +425,20 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Sounds\BackgroundMusic.WMA">
-      <Name>BackgroundMusic</Name>
-      <Importer>WmaImporter</Importer>
-      <Processor>SongProcessor</Processor>
+    <Compile Include="Overlays\candy_menu.png">
+      <Name>candy_menu</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Overlays\coffee_menu.png">
+      <Name>coffee_menu</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Overlays\money_menu.png">
+      <Name>money_menu</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
