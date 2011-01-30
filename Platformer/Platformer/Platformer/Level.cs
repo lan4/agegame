@@ -577,13 +577,14 @@ namespace Platformer
 
                 if (obstacle.BoundingRectangle.Intersects(Player.BoundingRectangle))
                 {
-                    if (!obstacle.open(score))
+                    if (!obstacle.open(score, player))
                     {
                         player.stopPlayer();
                     }
                     else
                     {
                         obstacles.RemoveAt(i);
+                        score -= 10;
                     }
                 }
             }
