@@ -215,6 +215,10 @@ namespace Platformer
                 case 'C':
                     return LoadCoffeeTile(x, y);
 
+                // Bottle
+                case 'B':
+                    return LoadBottleTile(x, y);
+
                 // Door
                 case 'D':
                     return LoadDoorTile(x, y);
@@ -352,6 +356,14 @@ namespace Platformer
         {
             Point position = GetBounds(x, y).Center;
             powerups.Add(new Coffee(this, new Vector2(position.X, position.Y)));
+
+            return new Tile(null, TileCollision.Passable);
+        }
+
+        private Tile LoadBottleTile(int x, int y)
+        {
+            Point position = GetBounds(x, y).Center;
+            powerups.Add(new Bottle(this, new Vector2(position.X, position.Y)));
 
             return new Tile(null, TileCollision.Passable);
         }
