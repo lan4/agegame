@@ -456,7 +456,7 @@ namespace Platformer
         private float DoJump(float velocityY, GameTime gameTime)
         {
             // If the player wants to jump
-            if (isJumping)
+            if (isJumping && (this.ageState > 0))
             {
                 // Begin or continue a jump
                 if ((!wasJumping && IsOnGround) || jumpTime > 0.0f)
