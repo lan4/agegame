@@ -59,6 +59,7 @@ namespace Platformer
 
         //Desaturation Effect
         private Effect desaturateEffect;
+        float percentage;
 
         public int Score
         {
@@ -634,7 +635,8 @@ namespace Platformer
         /// </summary>
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            float percentage=(float)(gameTime.TotalGameTime.TotalSeconds/TimeSpan.FromMinutes(4.00).TotalSeconds);
+            //for drawing greyscale
+            percentage = (float)(gameTime.TotalGameTime.TotalSeconds / TimeSpan.FromMinutes(1.00).TotalSeconds);
 
             //spriteBatch.Begin();
             spriteBatch.Begin(0, null, null, null, null, desaturateEffect);
@@ -647,18 +649,18 @@ namespace Platformer
             ScrollCamera(spriteBatch.GraphicsDevice.Viewport);
             Matrix cameraTransform = Matrix.CreateTranslation(-cameraPosition, -cameraPositionYAxis, 0.0f);
             spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, SamplerState.LinearClamp, DepthStencilState.Default,
-                              RasterizerState.CullCounterClockwise, null, cameraTransform);
+                              RasterizerState.CullCounterClockwise, desaturateEffect, cameraTransform);
 
             DrawTiles(spriteBatch);
 
             foreach (Gem gem in gems)
-                gem.Draw(gameTime, spriteBatch);
+                gem.Draw(gameTime, spriteBatch,percentage);
 
             foreach (Powerup powerup in powerups)
-                powerup.Draw(gameTime, spriteBatch);
+                powerup.Draw(gameTime, spriteBatch,percentage);
 
             foreach (Door obstacle in obstacles)
-                obstacle.Draw(gameTime, spriteBatch);
+                obstacle.Draw(gameTime, spriteBatch, percentage);
 
             Player.Draw(gameTime, spriteBatch);
 
@@ -672,7 +674,7 @@ namespace Platformer
 
             spriteBatch.Begin();
             for (int i = EntityLayer + 1; i < layers.Length; ++i)
-                layers[i].Draw(spriteBatch, cameraPosition,percentage);
+                layers[i].Draw(spriteBatch, cameraPosition,(1-percentage));
             spriteBatch.End();
         }
 
@@ -737,7 +739,7 @@ const float ViewMargin = 0.35f;
                     {
                         // Draw it in screen space.
                         Vector2 position = new Vector2(x, y) * Tile.Size;
-                        spriteBatch.Draw(texture, position, Color.White);
+                        spriteBatch.Draw(texture, position, new Color(255, 255, 255, (1 - percentage)));
                     }
                 }
             }
