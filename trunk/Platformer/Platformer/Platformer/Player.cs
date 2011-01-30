@@ -237,7 +237,14 @@ namespace Platformer
 
         public void stopPlayer()
         {
-            position = new Vector2(position.X - 5.0f, position.Y);
+            if (Velocity.X > 0)
+            {
+                position = new Vector2(position.X - 5.0f, position.Y);
+            }
+            else
+            {
+                position = new Vector2(position.X + 5.0f, position.Y);
+            }
         }
 
         // Jumping state
