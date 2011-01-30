@@ -35,7 +35,7 @@ namespace Platformer
             collected = true;
             if (collectedBy.ageState == 0)
             {
-                collectedBy.MoveScalar = 15.0f;
+                collectedBy.MoveScalar = 6.0f;
             }
             else if (collectedBy.ageState == 1 || collectedBy.ageState == 2)
             {
