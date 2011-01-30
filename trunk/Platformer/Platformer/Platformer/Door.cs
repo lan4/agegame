@@ -65,10 +65,10 @@ namespace Platformer
             }
         }
 
-        public bool open(int val)
+        public bool open(int val, Player player)
         {
             bool answer;
-            if (val >= Passval)
+            if (val >= Passval && player.ageState >= 1)
             {
                 answer = true;
             }
