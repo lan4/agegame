@@ -294,7 +294,7 @@ namespace Platformer
             runAnimation = new Animation(Level.Content.Load<Texture2D>("Sprites/Player/Player_Baby_Walk"), 0.1f, true);
             jumpAnimation = new Animation(Level.Content.Load<Texture2D>("Sprites/Player/Player_Adult_Jump"), 0.1f, false);
             celebrateAnimation = new Animation(Level.Content.Load<Texture2D>("Sprites/Player/Player_Baby_Idle"), 0.1f, false);
-            dieAnimation = new Animation(Level.Content.Load<Texture2D>("Sprites/Player/Player_Baby_Cry"), 0.2f, true);
+            dieAnimation = new Animation(Level.Content.Load<Texture2D>("Sprites/Player/Player_Old_Death"), 0.2f, true);
             cryAnimation = new Animation(Level.Content.Load<Texture2D>("Sprites/Player/Player_Baby_Cry"), 0.2f, true);
 
             //adult
@@ -303,9 +303,9 @@ namespace Platformer
             buyAnimation = new Animation(Level.Content.Load<Texture2D>("Sprites/Player/Player_Baby_Cry"), 0.1f, true);
 
             //old
-            idleOldAnimation = new Animation(Level.Content.Load<Texture2D>("Sprites/Player/Player_Baby_Idle"), 0.1f, true);
-            runOldAnimation = new Animation(Level.Content.Load<Texture2D>("Sprites/Player/Player_Baby_Walk"), 0.1f, true);
-            jumpOldAnimation = new Animation(Level.Content.Load<Texture2D>("Sprites/Player/Player_Baby_Idle"), 0.1f, true);
+            idleOldAnimation = new Animation(Level.Content.Load<Texture2D>("Sprites/Player/Player_Old_Idle"), 0.1f, true);
+            runOldAnimation = new Animation(Level.Content.Load<Texture2D>("Sprites/Player/Player_Old_Idle"), 0.1f, true);
+            jumpOldAnimation = new Animation(Level.Content.Load<Texture2D>("Sprites/Player/Player_Old_Idle"), 0.1f, true);
 
             // Calculate bounds within texture size.            
             int width = (int)(idleAnimation.FrameWidth * 0.4);

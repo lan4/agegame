@@ -348,6 +348,11 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Overlays\main_menu.png">
+      <Name>main_menu</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
     <Compile Include="Overlays\pause_menu.png">
       <Name>pause_menu</Name>
       <Importer>TextureImporter</Importer>
@@ -355,6 +360,11 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Overlays\main_menu.png">
+      <Name>main_menu</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
     <Compile Include="Overlays\pause_menu.png">
       <Name>pause_menu</Name>
       <Importer>TextureImporter</Importer>
@@ -400,6 +410,23 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Overlays\candy_menu.png">
+      <Name>candy_menu</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Overlays\coffee_menu.png">
+      <Name>coffee_menu</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Overlays\money_menu.png">
+      <Name>money_menu</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
     <Compile Include="Sprites\Player\Player_Adult_Idle.png">
       <Name>Player_Adult_Idle</Name>
       <Importer>TextureImporter</Importer>
@@ -429,32 +456,27 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Sprites\Player\Player_Old_Death.png">
+      <Name>Player_Old_Death</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\Player\Player_Old_Idle.png">
+      <Name>Player_Old_Idle</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Sprites\Powerup_Bottle.png">
+      <Name>Powerup_Bottle</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
     <Compile Include="Overlays\death.png">
       <Name>death</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Overlays\candy_menu.png">
-      <Name>candy_menu</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Overlays\coffee_menu.png">
-      <Name>coffee_menu</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Overlays\money_menu.png">
-      <Name>money_menu</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Overlays\main_menu.png">
-      <Name>main_menu</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
