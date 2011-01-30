@@ -29,6 +29,15 @@ namespace Platformer
         private Animation celebrateAnimation;
         private Animation dieAnimation;
         private Animation cryAnimation;
+        //adult
+        private Animation idleAdultAnimation;
+        private Animation runAdultAnimation;
+        private Animation buyAnimation;
+        //old
+        private Animation idleOldAnimation;
+        private Animation runOldAnimation;
+        private Animation jumpOldAnimation;
+
         private SpriteEffects flip = SpriteEffects.FlipHorizontally;
         private AnimationPlayer sprite;
 
@@ -190,6 +199,9 @@ namespace Platformer
                     MaxFallSpeed = 550.0f;
                     JumpControlPower = 0.14f;
                     MovementSpeed = 1.0f;
+                    //animation changes
+                    idleAnimation = idleAdultAnimation;
+                    runAnimation = runAdultAnimation;
                     break;
                 case(2)://Set movement constants for old man
                     MediaPlayer.Volume = 0.5f;
@@ -203,6 +215,10 @@ namespace Platformer
                     MaxFallSpeed = 550.0f;
                     JumpControlPower = 0.14f;
                     MovementSpeed = 0.5f;
+                    //animation changes
+                    idleAnimation = idleOldAnimation;
+                    runAnimation = runOldAnimation;
+                    jumpAnimation = jumpOldAnimation;
                     break;
 
             }
@@ -216,6 +232,11 @@ namespace Platformer
                 cryStatus = true;
                 cryTime = new TimeSpan();
             }
+        }
+
+        public void Buy()
+        {
+            //Might not be needed
         }
 
         public void stopPlayer()
@@ -267,6 +288,16 @@ namespace Platformer
             celebrateAnimation = new Animation(Level.Content.Load<Texture2D>("Sprites/Player/Player_Baby_Idle"), 0.1f, false);
             dieAnimation = new Animation(Level.Content.Load<Texture2D>("Sprites/Player/Player_Baby_Cry"), 0.2f, true);
             cryAnimation = new Animation(Level.Content.Load<Texture2D>("Sprites/Player/Player_Baby_Cry"), 0.2f, true);
+
+            //adult
+            idleAdultAnimation = new Animation(Level.Content.Load<Texture2D>("Sprites/Player/Player_Baby_Idle"), 0.1f, true);
+            runAdultAnimation = new Animation(Level.Content.Load<Texture2D>("Sprites/Player/Player_Baby_Walk"), 0.1f, true);
+            buyAnimation = new Animation(Level.Content.Load<Texture2D>("Sprites/Player/Player_Baby_Cry"), 0.1f, true);
+
+            //old
+            idleOldAnimation = new Animation(Level.Content.Load<Texture2D>("Sprites/Player/Player_Baby_Idle"), 0.1f, true);
+            runOldAnimation = new Animation(Level.Content.Load<Texture2D>("Sprites/Player/Player_Baby_Walk"), 0.1f, true);
+            jumpOldAnimation = new Animation(Level.Content.Load<Texture2D>("Sprites/Player/Player_Baby_Idle"), 0.1f, true);
 
             // Calculate bounds within texture size.            
             int width = (int)(idleAnimation.FrameWidth * 0.4);
@@ -392,10 +423,14 @@ namespace Platformer
             {
                 movement = MovementSpeed * moveScalar;
             }
-            else if ((gamePadState.IsButtonDown(Buttons.B) ||
-                     keyboardState.IsKeyDown(Keys.F)) && !cryStatus)
+            else if (gamePadState.IsButtonDown(Buttons.B) ||
+                     keyboardState.IsKeyDown(Keys.F))
             {
-                Cry();
+                if (!cryStatus && ageState == 0)
+                    Cry();
+                else if (ageState == 1)
+                    Buy();
+
             }
 
 
