@@ -280,14 +280,14 @@ namespace Platformer
             // Load animated textures.
             idleAnimation = new Animation(Level.Content.Load<Texture2D>("Sprites/Player/Player_Baby_Idle"), 0.1f, true);
             runAnimation = new Animation(Level.Content.Load<Texture2D>("Sprites/Player/Player_Baby_Walk"), 0.1f, true);
-            jumpAnimation = new Animation(Level.Content.Load<Texture2D>("Sprites/Player/Player_Baby_Idle"), 0.1f, false);
+            jumpAnimation = new Animation(Level.Content.Load<Texture2D>("Sprites/Player/Player_Adult_Jump"), 0.1f, false);
             celebrateAnimation = new Animation(Level.Content.Load<Texture2D>("Sprites/Player/Player_Baby_Idle"), 0.1f, false);
             dieAnimation = new Animation(Level.Content.Load<Texture2D>("Sprites/Player/Player_Baby_Cry"), 0.2f, true);
             cryAnimation = new Animation(Level.Content.Load<Texture2D>("Sprites/Player/Player_Baby_Cry"), 0.2f, true);
 
             //adult
-            idleAdultAnimation = new Animation(Level.Content.Load<Texture2D>("Sprites/Player/Player_Baby_Idle"), 0.1f, true);
-            runAdultAnimation = new Animation(Level.Content.Load<Texture2D>("Sprites/Player/Player_Baby_Walk"), 0.1f, true);
+            idleAdultAnimation = new Animation(Level.Content.Load<Texture2D>("Sprites/Player/Player_Adult_Idle"), 0.1f, true);
+            runAdultAnimation = new Animation(Level.Content.Load<Texture2D>("Sprites/Player/Player_Adult_Walk"), 0.1f, true);
             buyAnimation = new Animation(Level.Content.Load<Texture2D>("Sprites/Player/Player_Baby_Cry"), 0.1f, true);
 
             //old

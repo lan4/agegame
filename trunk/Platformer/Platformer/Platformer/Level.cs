@@ -578,7 +578,11 @@ namespace Platformer
                     if (!obstacle.open(score))
                     {
                         player.stopPlayer();
-                    }                    
+                    }
+                    else
+                    {
+                        obstacles.RemoveAt(i);
+                    }
                 }
             }
 
