@@ -95,9 +95,9 @@ namespace Platformer
         public void LoadContent(string spriteSet)
         {
             // Load animations.
-            spriteSet = "Sprites/" + spriteSet + "/";
-            runAnimation = new Animation(Level.Content.Load<Texture2D>(spriteSet + "Run"), 0.1f, true);
-            idleAnimation = new Animation(Level.Content.Load<Texture2D>(spriteSet + "Idle"), 0.15f, true);
+            spriteSet = "Sprites/MonsterA/";
+            runAnimation = new Animation(Level.Content.Load<Texture2D>(spriteSet + "Enemy_Adult_Walk"), 0.1f, true);
+            idleAnimation = new Animation(Level.Content.Load<Texture2D>(spriteSet + "Enemy_Adult_Idle"), 0.15f, true);
             sprite.PlayAnimation(idleAnimation);
 
             // Calculate bounds within texture size.
@@ -126,7 +126,7 @@ namespace Platformer
             else if (controlledPlayer.IsCrying)
             {
                 if (((controlledPlayer.Position.X - this.Position.X) * dir <= 100) 
-                    && (controlledPlayer.Position.Y - this.Position.Y <= 10))
+                    && (controlledPlayer.Position.Y - this.Position.Y == 0))
                 {
                     if (controlledPlayer.Position.X < this.Position.X)
                     {
