@@ -573,9 +573,12 @@ namespace Platformer
                 Door obstacle = obstacles[i];
                 Tile obTile = obstacleTiles[i];
 
-                while (obstacle.BoundingRectangle.Intersects(Player.BoundingRectangle))
+                if (obstacle.BoundingRectangle.Intersects(Player.BoundingRectangle))
                 {
-                    player.stopPlayer();
+                    if (!obstacle.open(score))
+                    {
+                        player.stopPlayer();
+                    }                    
                 }
             }
 

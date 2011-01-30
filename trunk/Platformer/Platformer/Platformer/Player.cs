@@ -222,6 +222,7 @@ namespace Platformer
         {
             position = new Vector2(position.X - 5.0f, position.Y);
         }
+
         // Jumping state
         private bool isJumping;
         private bool wasJumping;

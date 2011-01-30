@@ -16,9 +16,10 @@ namespace Platformer
         private Vector2 basePosition;
         private Texture2D texture;
         private bool passable;
-        private int passval;
+      
         //private Tile obTile;
 
+        private const int Passval = 10;
         public bool Passable
         {
             get { return passable; }
@@ -62,6 +63,22 @@ namespace Platformer
             {
                 return new Rectangle((int)Position.X, (int)Position.Y, 40, 32);
             }
+        }
+
+        public bool open(int val)
+        {
+            bool answer;
+            if (val >= Passval)
+            {
+                answer = true;
+            }
+
+            else
+            {
+                answer = false;
+            }
+
+            return answer;
         }
 
         public Door(Level level, Vector2 position)
