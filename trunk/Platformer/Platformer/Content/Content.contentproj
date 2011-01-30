@@ -350,13 +350,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Sprites\coffee.png">
-      <Name>coffee</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="Sprites\Powerup_Candy.png">
       <Name>Powerup_Candy</Name>
       <Importer>TextureImporter</Importer>
@@ -371,6 +364,20 @@
   <ItemGroup>
     <Compile Include="Tiles\Tile_Grass.png">
       <Name>Tile_Grass</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Sprites\Powerup_Coffee.png">
+      <Name>Powerup_Coffee</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Sprites\Player\Player_Baby_Walk.png">
+      <Name>Player_Baby_Walk</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>

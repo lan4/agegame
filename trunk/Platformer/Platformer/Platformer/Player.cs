@@ -38,6 +38,8 @@ namespace Platformer
 
         public int ageState = 0;
         private int cryUses = 1;
+        private bool cryStatus = false;
+        private TimeSpan cryTime;
 
         public Level Level
         {
@@ -65,6 +67,12 @@ namespace Platformer
         {
             get { return velocity; }
             set { velocity = value; }
+        }
+
+        public bool IsCrying
+        {
+            get { return cryStatus; }
+            set { cryStatus = value; }
         }
 
         Vector2 velocity;
@@ -194,7 +202,12 @@ namespace Platformer
 
         public void Cry()
         {
-
+            if (cryUses >= 1)
+            {
+                cryUses--;
+                cryStatus = true;
+                cryTime = new TimeSpan();
+            }
         }
 
         // Jumping state
@@ -298,6 +311,23 @@ namespace Platformer
                 }
             }
 
+            if (cryStatus == true)
+            {
+                cryTime += gameTime.ElapsedGameTime;
+            }
+            else
+            {
+                cryStatus = false;
+            }
+
+            if (cryStatus == true)
+            {
+                if (cryTime.Seconds >= 2)
+                {
+                    cryStatus = false;
+                }
+            }
+
             // Clear input.
             movement = 0.0f;
             isJumping = false;
@@ -344,6 +374,12 @@ namespace Platformer
             {
                 movement = MovementSpeed * moveScalar;
             }
+            else if (gamePadState.IsButtonDown(Buttons.B) ||
+                     keyboardState.IsKeyDown(Keys.F) && !cryStatus)
+            {
+                Cry();
+            }
+
 
             // Check if the player wants to jump.
             isJumping =
