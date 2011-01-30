@@ -304,13 +304,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Sounds\BackgroundMusic.WMA">
-      <Name>BackgroundMusic</Name>
-      <Importer>WmaImporter</Importer>
-      <Processor>SongProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="Tiles\Tile_Door.png">
       <Name>Tile_Door</Name>
       <Importer>TextureImporter</Importer>
@@ -391,6 +384,20 @@
       <Name>pause_menu</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Sounds\cry.WMA">
+      <Name>cry</Name>
+      <Importer>WmaImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Sounds\BackgroundMusic.WMA">
+      <Name>BackgroundMusic</Name>
+      <Importer>WmaImporter</Importer>
+      <Processor>SongProcessor</Processor>
     </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />
