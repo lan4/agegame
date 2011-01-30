@@ -125,7 +125,8 @@ namespace Platformer
             }
             else if (controlledPlayer.IsCrying)
             {
-                if ((controlledPlayer.Position.X - this.Position.X) * dir <= 100)
+                if (((controlledPlayer.Position.X - this.Position.X) * dir <= 100) 
+                    && (controlledPlayer.Position.Y - this.Position.Y <= 10))
                 {
                     if (controlledPlayer.Position.X < this.Position.X)
                     {
