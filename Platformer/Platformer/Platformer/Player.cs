@@ -376,7 +376,7 @@ namespace Platformer
 
             if (cryStatus == true)
             {
-                if (cryTime.Seconds >= 2)
+                if (cryTime.Seconds >= 1)
                 {
                     cryStatus = false;
                 }
