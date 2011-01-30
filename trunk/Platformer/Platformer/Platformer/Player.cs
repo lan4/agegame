@@ -212,11 +212,15 @@ namespace Platformer
             }
         }
 
+        public void stopPlayer()
+        {
+            position = new Vector2(position.X - 5.0f, position.Y);
+        }
         // Jumping state
         private bool isJumping;
         private bool wasJumping;
         private float jumpTime;
-
+        
         private Rectangle localBounds;
         /// <summary>
         /// Gets a rectangle which bounds this player in world space.

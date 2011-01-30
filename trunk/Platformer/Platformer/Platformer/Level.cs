@@ -32,6 +32,7 @@ namespace Platformer
         // The layer which entities are drawn on top of.
         private const int EntityLayer = 2;
 
+        private SoundEffect sound;
         // Entities in the level.
         public Player Player
         {
@@ -125,6 +126,7 @@ namespace Platformer
 
             // Load sounds.
             exitReachedSound = Content.Load<SoundEffect>("Sounds/ExitReached");
+            sound = Content.Load<SoundEffect>("Sounds/GemCollected");
         }
 
         /// <summary>
@@ -359,7 +361,7 @@ namespace Platformer
             Point position = GetBounds(x, y).Center;
             obstacles.Add(new Door(this, new Vector2(position.X, position.Y)));
 
-            Tile newTile = new Tile(null, TileCollision.Impassable);
+            Tile newTile = new Tile(null, TileCollision.Passable);
             obstacleTiles.Add(newTile);
             return newTile;
         }
@@ -557,19 +559,11 @@ namespace Platformer
             for (int i = 0; i < obstacles.Count; ++i)
             {
                 Door obstacle = obstacles[i];
-                Tile obTile = obstacleTiles[i];             
+                Tile obTile = obstacleTiles[i];
 
-                if (obstacle.BoundingCircle.Intersects(Player.BoundingRectangle))
+                while (obstacle.BoundingRectangle.Intersects(Player.BoundingRectangle))
                 {
-                    obstacle.Update(Player, gameTime);
-                    if (obstacle.Passable == true)
-                    {
-                        obTile.Collision = TileCollision.Passable;
-                    }
-                    else
-                    {
-                        obTile.Collision = TileCollision.Impassable;
-                    }
+                    player.stopPlayer();
                 }
             }
 

@@ -192,6 +192,7 @@ namespace Platformer
         {
             paused = true;
             MediaPlayer.Pause();
+            
         }
 
         private void EndPause()
