@@ -29,6 +29,8 @@ namespace Platformer
         public override void OnCollected(Player collectedBy)
         {
             collectedBy.CryCount += 1;
+            if (collectedBy.collectedMilk == 0)
+                collectedBy.collectedMilk = 1;
         }
 
         public override void PowerupTimer(Player collectedBy, GameTime gameTime)

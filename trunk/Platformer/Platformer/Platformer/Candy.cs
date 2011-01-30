@@ -41,6 +41,8 @@ namespace Platformer
             {
                 collectedBy.MoveScalar = 0.5f;
             }
+            if (collectedBy.collectedCandy == 0)
+                collectedBy.collectedCandy = 1;
         }
 
         public override void PowerupTimer(Player collectedBy, GameTime gameTime)

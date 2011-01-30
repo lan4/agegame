@@ -52,6 +52,11 @@ namespace Platformer
         private bool cryStatus = false;
         private TimeSpan cryTime;
 
+        public int collectedMilk = 0;
+        public int collectedCoffee = 0;
+        public int collectedCandy = 0;
+        public int collectedMoney = 0;
+
         public Level Level
         {
             get { return level; }
