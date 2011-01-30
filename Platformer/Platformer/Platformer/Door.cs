@@ -16,6 +16,7 @@ namespace Platformer
         private Vector2 basePosition;
         private Texture2D texture;
         private bool passable;
+        private int passval;
         //private Tile obTile;
 
         public bool Passable
@@ -55,11 +56,11 @@ namespace Platformer
             set { texture = value; }
         }
 
-        public Circle BoundingCircle
+        public Rectangle BoundingRectangle
         {
             get
             {
-                return new Circle(Position, Tile.Width / 3.0f);
+                return new Rectangle((int)Position.X, (int)Position.Y, 40, 32);
             }
         }
 
@@ -78,14 +79,8 @@ namespace Platformer
 
         public void Update(Player player, GameTime gameTime)
         {
-            if (player.ageState >= 1)
-            {
-                Passable = true;
-            }
-            else
-            {
-                Passable = false;
-            }
+           
+      
         }
 
         public void LoadContent()
