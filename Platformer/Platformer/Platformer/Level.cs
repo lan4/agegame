@@ -45,6 +45,7 @@ namespace Platformer
         private List<Obstacle> obstacles = new List<Obstacle>();
         private List<Tile> obstacleTiles = new List<Tile>();
         private List<Enemy> enemies = new List<Enemy>();
+        private List<Adult> adults = new List<Adult>();
 
         // Key locations in the level.        
         private Vector2 start;
@@ -221,7 +222,7 @@ namespace Platformer
 
                 // Various enemies
                 case 'A':
-                    return LoadEnemyTile(x, y, "MonsterA");
+                    return LoadAdultTile(x, y, "MonsterA");
 
                 // Platform block
                 case '~':
@@ -315,6 +316,14 @@ namespace Platformer
             enemies.Add(new Enemy(this, position, spriteSet));
 
             return new Tile(null, TileCollision.Passable);
+        }
+
+        private Tile LoadAdultTile(int x, int y, string spriteSet)
+        {
+            Vector2 position = RectangleExtensions.GetBottomCenter(GetBounds(x, y));
+            adults.Add(new Adult(this, position, spriteSet));
+
+            return new Tile(null, TileCollision.Impassable);
         }
 
         /// <summary>
@@ -505,6 +514,14 @@ namespace Platformer
             }
         }
 
+        private void UpdateAdults(GameTime gameTime)
+        {
+            foreach (Adult adult in adults)
+            {
+                adult.Update(gameTime, Player);
+            }
+        }
+
         /// <summary>
         /// Animates each enemy and allow them to kill the player.
         /// </summary>
@@ -643,6 +660,9 @@ namespace Platformer
 
             foreach (Enemy enemy in enemies)
                 enemy.Draw(gameTime, spriteBatch);
+
+            foreach (Adult adult in adults)
+                adult.Draw(gameTime, spriteBatch);
 
             spriteBatch.End();
 

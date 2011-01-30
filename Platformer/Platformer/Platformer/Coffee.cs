@@ -25,7 +25,7 @@ namespace Platformer
 
         public override void LoadContent()
         {
-            Texture = Level.Content.Load<Texture2D>("Sprites/coffee");
+            Texture = Level.Content.Load<Texture2D>("Sprites/Powerup_Coffee");
             Origin = new Vector2(Texture.Width / 2.0f, Texture.Height / 2.0f);
             CollectedSound = Level.Content.Load<SoundEffect>("Sounds/GemCollected");
         }
