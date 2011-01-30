@@ -426,6 +426,7 @@ namespace Platformer
         /// and handles the time limit with scoring.
         /// </summary>
         public void Update(
+            bool gameStarted,
             GameTime gameTime, 
             KeyboardState keyboardState, 
             GamePadState gamePadState, 
@@ -434,7 +435,7 @@ namespace Platformer
             DisplayOrientation orientation)
         {
             // Pause while the player is dead or time is expired.
-            if (!Player.IsAlive || TimeRemaining == TimeSpan.Zero)
+            if (!Player.IsAlive || TimeRemaining == TimeSpan.Zero || !gameStarted)
             {
                 // Still want to perform physics on the player.
                 Player.ApplyPhysics(gameTime);

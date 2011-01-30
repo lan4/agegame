@@ -30,6 +30,8 @@ namespace Platformer
         // Global content.
         private SpriteFont hudFont;
 
+        private Texture2D menuOverlay;
+        private Texture2D pauseOverlay;
         private Texture2D winOverlay;
         private Texture2D loseOverlay;
         private Texture2D diedOverlay;
@@ -38,6 +40,7 @@ namespace Platformer
         private int levelIndex = -1;
         private Level level;
         private bool wasContinuePressed;
+        private bool gameStarted = false;
 
         // When the time remaining is less than the warning time, it blinks on the hud
         private static readonly TimeSpan WarningTime = TimeSpan.FromSeconds(30);
@@ -88,6 +91,8 @@ namespace Platformer
             hudFont = Content.Load<SpriteFont>("Fonts/Hud");
 
             // Load overlay textures
+            menuOverlay = Content.Load<Texture2D>("Overlays/main_menu");
+            pauseOverlay = Content.Load<Texture2D>("Overlays/pause_menu");
             winOverlay = Content.Load<Texture2D>("Overlays/you_win");
             loseOverlay = Content.Load<Texture2D>("Overlays/you_lose");
             diedOverlay = Content.Load<Texture2D>("Overlays/you_died");
@@ -121,7 +126,7 @@ namespace Platformer
             if(!paused)
             {
                 // update our level, passing down the GameTime along with all of our input states
-                level.Update(gameTime, keyboardState, gamePadState, touchState, 
+                level.Update(gameStarted, gameTime, keyboardState, gamePadState, touchState, 
                          accelerometerState, Window.CurrentOrientation);
             }
             
@@ -145,9 +150,24 @@ namespace Platformer
                 gamePadState.IsButtonDown(Buttons.A) ||
                 touchState.AnyTouch();
 
+            bool startPressed =
+                keyboardState.IsKeyDown(Keys.Enter) ||
+                gamePadState.IsButtonDown(Buttons.A);
+
+            bool quitPressed =
+                keyboardState.IsKeyDown(Keys.Q) ||
+                gamePadState.IsButtonDown(Buttons.B);
+
+            // Perform the appropriate action to start the game
+            if (!gameStarted && startPressed)
+                gameStarted = true;
+
+            if ((!gameStarted || paused) && quitPressed)
+                Exit();
+
             // Perform the appropriate action to advance the game and
             // to get the player back to playing.
-            if (!wasContinuePressed && continuePressed)
+            if (gameStarted && !wasContinuePressed && continuePressed)
             {
                 if (!level.Player.IsAlive)
                 {
@@ -169,7 +189,6 @@ namespace Platformer
         {
             paused = true;
             MediaPlayer.Pause();
-            
         }
 
         private void EndPause()
@@ -260,7 +279,15 @@ namespace Platformer
            
             // Determine the status overlay message to show.
             Texture2D status = null;
-            if (level.TimeRemaining == TimeSpan.Zero)
+            if (!gameStarted)
+            {
+                status = menuOverlay;
+            }
+            else if (paused)
+            {
+                status = pauseOverlay;
+            }
+            else if (level.TimeRemaining == TimeSpan.Zero)
             {
                 if (level.ReachedExit)
                 {
