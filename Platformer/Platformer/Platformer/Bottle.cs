@@ -28,29 +28,18 @@ namespace Platformer
 
         public override void OnCollected(Player collectedBy)
         {
-
+            collectedBy.CryCount += 1;
         }
 
         public override void PowerupTimer(Player collectedBy, GameTime gameTime)
         {
-            //Times the candy movement speed boost.
-            Update(gameTime);
-            if (collected)
-            {
-                if (powerupTimer.Seconds >= 5)
-                {
-                    collected = false;
-                    collectedBy.MoveScalar = 1.0f;
-                }
-            }
+           
+
         }
 
         public override void Update(GameTime gameTime)
         {
-            //if (collected)
-            //{
-            //    startTime -= gameTime.ElapsedGameTime;
-            //}
+
         }
 
     }

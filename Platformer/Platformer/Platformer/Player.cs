@@ -108,6 +108,12 @@ namespace Platformer
             get { return isOnGround; }
             set { isOnGround = value; }
         }
+
+        public int CryCount
+        {
+            get { return cryUses; }
+            set { cryUses = value; }
+        }
         bool isOnGround;
 
         /// <summary>

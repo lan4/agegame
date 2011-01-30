@@ -114,12 +114,10 @@ namespace Platformer
         /// </summary>
         public void Update(GameTime gameTime, Player controlledPlayer)
         {
-            //Rectangle adultBounds = BoundingRectangle;
-            //Rectangle bounds = controlledPlayer.BoundingRectangle;
-            //if (controlledPlayer.BoundingRectangle.Intersects(this.BoundingRectangle) && !runFlag)
-            //{
-
-            //}
+            while (this.BoundingRectangle.Intersects(controlledPlayer.BoundingRectangle) && !runFlag)
+            {
+                controlledPlayer.stopPlayer();
+            }
                    
             if (runFlag)
             {
