@@ -142,7 +142,7 @@ namespace Platformer
         /// </summary>
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch,float percentage)
         {
-            spriteBatch.Draw(texture, Position, null, new Color(255, 255, 255, (1 - percentage)), 0.0f, origin, 1.0f, SpriteEffects.None, 0.0f);
+            spriteBatch.Draw(texture, Position, null, new Color((1 - percentage) * 255, (1 - percentage) * 255, (1 - percentage) * 255, (1 - percentage)), 0.0f, origin, 1.0f, SpriteEffects.None, 0.0f);
         }
 
         /// <summary>
