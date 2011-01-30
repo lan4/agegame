@@ -596,6 +596,7 @@ namespace Platformer
                 flip = SpriteEffects.FlipHorizontally;
             else if (Velocity.X < 0)
                 flip = SpriteEffects.None;
+           
 
             // Draw that sprite.
             sprite.Draw(gameTime, spriteBatch, Position, flip);

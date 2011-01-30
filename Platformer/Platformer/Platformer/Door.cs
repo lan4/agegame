@@ -71,9 +71,9 @@ namespace Platformer
             LoadContent();
         }
 
-        public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        public void Draw(GameTime gameTime, SpriteBatch spriteBatch, float percentage)
         {
-            spriteBatch.Draw(texture, Position, null, Color.White, 0.0f, origin, 1.0f, SpriteEffects.None, 0.0f);
+            spriteBatch.Draw(texture, Position, null, new Color(255, 255, 255, (1 - percentage)), 0.0f, origin, 1.0f, SpriteEffects.None, 0.0f);
         }
 
         public void Update(Player player, GameTime gameTime)

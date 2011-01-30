@@ -140,9 +140,9 @@ namespace Platformer
         /// <summary>
         /// Draws a gem in the appropriate color.
         /// </summary>
-        public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        public void Draw(GameTime gameTime, SpriteBatch spriteBatch,float percentage)
         {
-            spriteBatch.Draw(texture, Position, null, Color, 0.0f, origin, 1.0f, SpriteEffects.None, 0.0f);
+            spriteBatch.Draw(texture, Position, null, new Color(255, 255, 255, (1 - percentage)), 0.0f, origin, 1.0f, SpriteEffects.None, 0.0f);
         }
 
         /// <summary>
