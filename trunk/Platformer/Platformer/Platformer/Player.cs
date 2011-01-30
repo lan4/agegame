@@ -406,24 +406,27 @@ namespace Platformer
             }
 
             // If any digital horizontal movement input is found, override the analog movement.
-            if (gamePadState.IsButtonDown(Buttons.DPadLeft) ||
-                keyboardState.IsKeyDown(Keys.Left) ||
-                keyboardState.IsKeyDown(Keys.A))
-            {
-                movement = -MovementSpeed * moveScalar;
-            }
-            else if (gamePadState.IsButtonDown(Buttons.DPadRight) ||
-                     keyboardState.IsKeyDown(Keys.Right) ||
-                     keyboardState.IsKeyDown(Keys.D))
-            {
-                movement = MovementSpeed * moveScalar;
-            }
-            else if (gamePadState.IsButtonDown(Buttons.B) ||
+            if (gamePadState.IsButtonDown(Buttons.B) ||
                      keyboardState.IsKeyDown(Keys.F))
             {
                 if (!cryStatus && ageState == 0)
                     Cry();
             }
+            else if ((gamePadState.IsButtonDown(Buttons.DPadLeft) ||
+                keyboardState.IsKeyDown(Keys.Left) ||
+                keyboardState.IsKeyDown(Keys.A)) &&
+                !IsCrying)
+            {
+                movement = -MovementSpeed * moveScalar;
+            }
+            else if ((gamePadState.IsButtonDown(Buttons.DPadRight) ||
+                     keyboardState.IsKeyDown(Keys.Right) ||
+                     keyboardState.IsKeyDown(Keys.D)) && 
+                    !IsCrying)
+            {
+                movement = MovementSpeed * moveScalar;
+            }
+           
 
 
             // Check if the player wants to jump.
