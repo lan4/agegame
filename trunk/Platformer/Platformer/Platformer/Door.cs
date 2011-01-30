@@ -67,6 +67,7 @@ namespace Platformer
 
         public bool open(int val, Player player)
         {
+            player.collectedMoney = player.collectedMoney - 10;
             bool answer;
             if (val >= Passval && player.ageState >= 1)
             {
